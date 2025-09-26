@@ -3,10 +3,6 @@
  
 {% block content %}
         <h1 class="text-3xl font-bold underline m-0">
-            Liste des burgers
+            Burger {{ id }}
         </h1>
-        <ul>
-            {% for burger in burgers %}
-                <li><a href={{ path("burger", burger.id) }}>burger.name</a></li>
-        </ul>
 {% endblock %}
