@@ -3,6 +3,7 @@
  
 {% block content %}
         <h1 class="text-3xl font-bold underline m-0">
-            Burger {{ id }}
+            Burger {{ burger.getId() }}
         </h1>
+        <img src={{ burger.getImage().getPath() }}>
 {% endblock %}

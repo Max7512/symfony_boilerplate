@@ -1,12 +1,13 @@
-{% extends 'base.html.twig' %}
-{% block title %}{{ parent() }} | Liste Burger{% endblock %}
- 
-{% block content %}
-        <h1 class="text-3xl font-bold underline m-0">
-            Liste des burgers
-        </h1>
-        <ul>
-            {% for burger in burgers %}
-                <li><a href={{ path("burger", burger.id) }}>burger.name</a></li>
-        </ul>
-{% endblock %}
+      {% extends 'base.html.twig' %}
+      {% block title %}{{ parent() }} | Liste Burger{% endblock %}
+       
+      {% block content %}
+              <h1 class="text-3xl font-bold underline m-0">
+                  Liste des burgers
+              </h1>
+              <ul>
+                  {% for burger in burgers %}
+                     <li><a href="{{ path('burger', {'id': burger.id}) }}">{{ burger.name }}</a></li>
+                 {% endfor %}
+             </ul>
+     {% endblock %}
