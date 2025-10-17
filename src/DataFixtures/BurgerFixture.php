@@ -15,19 +15,19 @@ class BurgerFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $pain = new Pain();
-        $pain->setName('Pain burger');
+        $pain->setName('Burger');
 
         $tomate = new Ingredient();
         $tomate->setName('Tomate');
 
         $oignon = new Ingredient();
-        $oignon->setName('Oignon blanc');
+        $oignon->setName('Oignon');
 
         $salade = new Ingredient();
         $salade->setName('Salade');
 
         $sauceBBQ = new Sauce();
-        $sauceBBQ->setName('Sauce BBQ');
+        $sauceBBQ->setName('BBQ');
 
         $moutarde = new Sauce();
         $moutarde->setName('Moutarde');
@@ -55,12 +55,10 @@ class BurgerFixture extends Fixture
             $burger->setPrice(rand(100, 1000) / 100);
             $burger->setImage($image);
             $burger->setPain($pain);
-            $burger->setIngredients(array());
-            $burger->setSauces(array());
             $burger->setCommentaires(array());
 
-            $burgerIngredients = $burger->getIngredients();
-            $burgerSauces = $burger->getSauces();
+            $burgerIngredients = array();
+            $burgerSauces = array();
 
             foreach ($ingredients as $ingredient) {
                 if (rand(0, 1) == 1) array_push($burgerIngredients, $ingredient);
@@ -69,6 +67,9 @@ class BurgerFixture extends Fixture
             foreach ($sauces as $sauce) {
                 if (rand(0, 1) == 1) array_push($burgerSauces, $sauce);
             }
+
+            $burger->setIngredients($burgerIngredients);
+            $burger->setSauces($burgerSauces);
 
             $manager->persist($image);
             $manager->persist($burger);

@@ -94,7 +94,7 @@ class Burger
         return $this;
     }
 
-    public function getIngredients(): array
+    public function getIngredients()
     {
         return $this->ingredients;
     }
@@ -106,7 +106,7 @@ class Burger
         return $this;
     }
 
-    public function getSauces(): array
+    public function getSauces()
     {
         return $this->sauces;
     }
@@ -118,7 +118,7 @@ class Burger
         return $this;
     }
 
-    public function getCommentaires(): array
+    public function getCommentaires()
     {
         return $this->commentaires;
     }

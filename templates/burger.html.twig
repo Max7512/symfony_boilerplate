@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }} | Liste Burger{% endblock %}
- 
+{% block title %}
+	{{ parent() }}
+	| Liste Burger
+{% endblock %}
+
 {% block content %}
-        <h1 class="text-3xl font-bold underline m-0">
-            Burger {{ burger.getId() }}
-        </h1>
-        <img src={{ burger.getImage().getPath() }}>
+	<h1 class="text-3xl font-bold underline m-0">
+		{{ burger.getName() }}
+	</h1>
+	<p>
+		Ingredients :
+		{% for ingredient in burger.getIngredients() %}
+			{{ ingredient.getName() }}
+		{% endfor %}
+	</p>
+	<p>
+		Sauces :
+		{% for sauce in burger.getSauces() %}
+			{{ sauce.getName() }}
+		{% endfor %}
+	</p>
+	<p>
+		Prix :
+		{{ burger.getPrice() }}
+	</p>
+	<img src={{ burger.getImage().getPath() }}>
 {% endblock %}

@@ -8,13 +8,17 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\BurgerRepository;
 use App\Entity\Burger;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 
 class BurgerController extends AbstractController
 {
     #[Route('/burgers', name: 'burgers')]
-    public function list(BurgerRepository $burgerRepository): Response
+    public function list(#[MapQueryParameter] ?string $ingredient = null, #[MapQueryParameter] ?int $top = null, BurgerRepository $burgerRepository): Response
     {
-        $burgers = $burgerRepository->findAll();
+        if ($ingredient) $burgers = $burgerRepository->findBurgersWithIngredient($ingredient);
+        else if ($top) $burgers = $burgerRepository->findTopXBurgers($top);
+        else $burgers = $burgerRepository->findAll();
+
         return $this->render('burger_list.html.twig', ['burgers' => $burgers]);
     }
 
@@ -22,6 +26,7 @@ class BurgerController extends AbstractController
     public function burger(string $id, BurgerRepository $burgerRepository): Response
     {
         $burger = $burgerRepository->findById($id)[0];
+
         return $this->render('burger.html.twig', ['burger' => $burger]);
     }
 
