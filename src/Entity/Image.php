@@ -17,8 +17,8 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $path = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Burger $burger = null;
+    // #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    // private ?Burger $burger = null;
 
     public function getId(): ?int
     {
@@ -37,15 +37,15 @@ class Image
         return $this;
     }
 
-    public function getBurger(): ?Burger
-    {
-        return $this->burger;
-    }
+    // public function getBurger(): ?Burger
+    // {
+    //     return $this->burger;
+    // }
 
-    public function setBurger(Burger $burger): static
-    {
-        $this->burger = $burger;
+    // public function setBurger(Burger $burger): static
+    // {
+    //     $this->burger = $burger;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

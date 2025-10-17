@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\BurgerRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Pain;
-use App\Entity\Oignon;
+use App\Entity\Ingredient;
 use App\Entity\Sauce;
 use App\Entity\Image;
 use App\Entity\Commentaire;
@@ -30,9 +30,9 @@ class Burger
     #[ORM\ManyToOne(targetEntity: Pain::class, inversedBy: 'burgers')]
     private $pain;
 
-    #[ORM\ManyToMany(targetEntity: Oignon::class, inversedBy: 'burgers')]
-    #[ORM\JoinTable(name: 'burgers_oignons')]
-    private $oignons;
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'burgers')]
+    #[ORM\JoinTable(name: 'burgers_ingredients')]
+    private $ingredients;
 
     #[ORM\ManyToMany(targetEntity: Sauce::class, inversedBy: 'burgers')]
     #[ORM\JoinTable(name: 'burgers_sauces')]
@@ -94,14 +94,14 @@ class Burger
         return $this;
     }
 
-    public function getOignons(): array
+    public function getIngredients(): array
     {
-        return $this->oignons;
+        return $this->ingredients;
     }
 
-    public function setOignons(array $oignons): static
+    public function setIngredients(array $ingredients): static
     {
-        $this->oignons = $oignons;
+        $this->ingredients = $ingredients;
 
         return $this;
     }

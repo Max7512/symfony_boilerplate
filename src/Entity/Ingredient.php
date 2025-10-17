@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\OignonRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Burger;
 
-#[ORM\Entity(repositoryClass: OignonRepository::class)]
-class Oignon
+#[ORM\Entity(repositoryClass: IngredientRepository::class)]
+class Ingredient
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,7 +17,7 @@ class Oignon
     #[ORM\Column(length: 64)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'oignons')]
+    #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'ingredients')]
     private $burgers;
 
     public function getId(): ?int

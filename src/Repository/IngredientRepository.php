@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Oignon;
+use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Oignon>
+ * @extends ServiceEntityRepository<Ingredient>
  */
-class OignonRepository extends ServiceEntityRepository
+class IngredientRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Oignon::class);
+        parent::__construct($registry, Ingredient::class);
     }
 
     //    /**
-    //     * @return Oignon[] Returns an array of Oignon objects
+    //     * @return Ingredient[] Returns an array of Ingredient objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class OignonRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Oignon
+    //    public function findOneBySomeField($value): ?Ingredient
     //    {
     //        return $this->createQueryBuilder('o')
     //            ->andWhere('o.exampleField = :val')
