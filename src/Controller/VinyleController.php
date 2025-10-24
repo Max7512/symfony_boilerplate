@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\VinyleRepository;
 
-class HomeController extends BaseController
+class VinyleController extends BaseController
 {
     public ?VinyleRepository $vinyleRepository = null;
 
@@ -15,9 +15,9 @@ class HomeController extends BaseController
         $this->vinyleRepository = $vinyleRepository;
     }
 
-    #[Route("/", name: "home")]
-    public function home(): Response
+    #[Route("/vinyle/{id}", name: "vinyle")]
+    public function vinyle(string $id): Response
     {
-        return $this->render("accueil.html.twig", ["vinyles" => $this->vinyleRepository->findAll()]);
+        return $this->render("vinyle.html.twig", ["vinyle" => $this->vinyleRepository->find($id)]);
     }
 }

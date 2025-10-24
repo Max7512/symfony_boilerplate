@@ -1,3 +1,64 @@
 body {
-    background-color: skyblue;
+    background-color: rgb(16, 35, 43);
+    color: aliceblue;
+    margin: 0px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: aliceblue;
+    background-color: rgb(9, 8, 29);
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav > a {
+    text-decoration: none;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+nav > a:hover {
+    background-color: rgb(3, 2, 26);
+}
+
+.vinyles {
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.vinyle-layout {
+    background-color: rgb(164, 185, 204);
+    color: rgb(0, 0, 29);
+    width: 15rem;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    img {
+        width: 100%;
+    }
+
+    h1 {
+        height: 5rem;
+    }
 }
