@@ -6,7 +6,14 @@
 {% block body %}
 	<div class="vinyles">
 		{% for vinyle in vinyles %}
-			{% include "vinyleLayout.html.twig" with {"vinyle": vinyle} %}
+			<a href={{ path("vinyle", { "id": vinyle.getId() } ) }} class="vinyle-layout">
+				<div>
+					<h1>{{ vinyle.getName() }}</h1>
+					<h2>{{ vinyle.getAuthor() }}</h2>
+					<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+					<label>Prix : {{ vinyle.getPrice() }} €</label>
+				</div>
+			</a>
 		{% endfor %}
 	</div>
 {% endblock %}
