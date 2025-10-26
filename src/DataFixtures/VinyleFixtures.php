@@ -6,9 +6,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Vinyle;
 use App\Entity\Image;
-use App\Util\VinyleStatus;
 
-class VinyleFixture extends Fixture
+class VinyleFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
