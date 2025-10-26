@@ -20,18 +20,9 @@ class VinyleFixture extends Fixture
                 $vinyle->setName($title);
                 $image->setUrl($cover);
                 $vinyle->setImage($image);
-                $vinyle->setPrice(rand(19.99, 39.99));
+                $vinyle->setPrice(rand(1999, 3999) / 100);
                 $vinyle->setDescription($title.": Album de ".$author);
-                $vinyle->setStock(rand(0,10));
-                if ($vinyle->getStock() > 0) {
-                    $vinyle->setStatus(VinyleStatus::IN_STOCK);
-                } else {
-                    if (rand(0,1)) {
-                        $vinyle->setStatus(VinyleStatus::OUT_OF_STOCK);
-                    } else {
-                        $vinyle->setStatus(VinyleStatus::PREORDER);
-                    }
-                }
+                $vinyle->setStock(rand(0,30), rand(0,1));
 
                 $manager->persist($vinyle);
             }

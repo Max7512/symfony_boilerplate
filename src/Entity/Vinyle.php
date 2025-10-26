@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\VinyleRepository;
 use App\Util\VinyleStatus;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 #[ORM\Entity(repositoryClass: VinyleRepository::class)]
 class Vinyle
@@ -35,6 +38,24 @@ class Vinyle
     #[ORM\OneToOne(inversedBy: 'vinyle', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Image $image = null;
+
+    /**
+     * @var Collection<int, OrderItem>
+     */
+    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'Vinyle')]
+    private Collection $orderItems;
+
+    /**
+     * @var Collection<int, PanierItem>
+     */
+    #[ORM\OneToMany(targetEntity: PanierItem::class, mappedBy: 'Vinyle')]
+    private Collection $panierItems;
+
+    public function __construct()
+    {
+        $this->orderItems = new ArrayCollection();
+        $this->panierItems = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -94,9 +115,17 @@ class Vinyle
         return $this->stock;
     }
 
-    public function setStock(int $stock): static
+    public function setStock(int $stock, bool $preorder = false): static
     {
         $this->stock = $stock;
+
+        if ($preorder) {
+            $this->setStatus(VinyleStatus::PREORDER);
+        } else if ($stock > 0) {
+            $this->setStatus(VinyleStatus::IN_STOCK);
+        } else {
+            $this->setStatus(VinyleStatus::OUT_OF_STOCK);
+        }
 
         return $this;
     }
@@ -108,6 +137,12 @@ class Vinyle
 
     public function setStatus(VinyleStatus $status): static
     {
+        if ($status == VinyleStatus::IN_STOCK && $this->stock < 0) {
+            throw new Exception("Le stock doit être supérieur à 0 pour un vinyle en stock.");
+        } else if ($status == VinyleStatus::OUT_OF_STOCK && $this->stock >= 0) {
+            throw new Exception("Le stock doit être inférieur ou égal à 0 pour un vinyle en rupture de stock.");
+        }
+
         $this->status = $status;
 
         return $this;
@@ -121,6 +156,66 @@ class Vinyle
     public function setImage(image $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderItem>
+     */
+    public function getOrderItems(): Collection
+    {
+        return $this->orderItems;
+    }
+
+    public function addOrderItem(OrderItem $orderItem): static
+    {
+        if (!$this->orderItems->contains($orderItem)) {
+            $this->orderItems->add($orderItem);
+            $orderItem->setVinyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderItem(OrderItem $orderItem): static
+    {
+        if ($this->orderItems->removeElement($orderItem)) {
+            // set the owning side to null (unless already changed)
+            if ($orderItem->getVinyle() === $this) {
+                $orderItem->setVinyle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PanierItem>
+     */
+    public function getPanierItems(): Collection
+    {
+        return $this->panierItems;
+    }
+
+    public function addPanierItem(PanierItem $panierItem): static
+    {
+        if (!$this->panierItems->contains($panierItem)) {
+            $this->panierItems->add($panierItem);
+            $panierItem->setVinyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanierItem(PanierItem $panierItem): static
+    {
+        if ($this->panierItems->removeElement($panierItem)) {
+            // set the owning side to null (unless already changed)
+            if ($panierItem->getVinyle() === $this) {
+                $panierItem->setVinyle(null);
+            }
+        }
 
         return $this;
     }
