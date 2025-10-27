@@ -14,15 +14,13 @@ class UserFixtures extends Fixture
         for ($i = 0; $i < 20; $i++) {
             $user = new User();
 
-            $firstName = array_rand($this::firstNames);
-            $lastName = array_rand($this::lastNames);
+            $firstName = $this::firstNames[array_rand($this::firstNames)];
+            $lastName = $this::lastNames[array_rand($this::lastNames)];
 
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($firstName . $lastName . "@truc.com");
-
-            unset($firstName);
-            unset($lastName);
+            $user->setPassword("$2y$13$9uGgMHtDM55GkvNLMdCmsOjqvTzbncvbArUd0iJ3KC/7joD205WwK");
 
             $roles = ["ROLE_USER"];
 
@@ -30,24 +28,18 @@ class UserFixtures extends Fixture
 
             $user->setRoles($roles);
 
-            unset($roles);
-
             for ($i = 0; $i < rand(0, 3); $i++) {
                 $address = new Address();
 
-                $address->setStreet(array_rand($this::streets));
-                $address->setCity(array_rand($this::cities));
-                $address->setPostalCode(array_rand($this::postalCodes));
-                $address->setCountry(array_rand($this::countries));
+                $address->setStreet($this::streets[array_rand($this::streets)]);
+                $address->setCity($this::cities[array_rand($this::cities)]);
+                $address->setPostalCode($this::postalCodes[array_rand($this::postalCodes)]);
+                $address->setCountry($this::countries[array_rand($this::countries)]);
 
                 $user->addAddress($address);
-
-                unset($address);
             }
 
             $manager->persist($user);
-
-            unset($user);
         }
 
         $manager->flush();

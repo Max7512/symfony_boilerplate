@@ -7,7 +7,7 @@
 	<div class="vinyles">
 		{% for vinyle in vinyles %}
 			<a href={{ path("vinyle", { "id": vinyle.getId() } ) }} class="vinyle-layout">
-				<div>
+				<div class="conteneur colonne-centre">
 					<h1>{{ vinyle.getName() }}</h1>
 					<h2>{{ vinyle.getAuthor() }}</h2>
 					<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">

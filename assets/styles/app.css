@@ -36,6 +36,21 @@ nav {
     }
 }
 
+.conteneur {
+    color: rgb(0, 0, 29);
+    background-color: rgb(164, 185, 204);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.colonne-centre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .vinyles {
     display: flex;
     flex-wrap: wrap;
@@ -44,20 +59,13 @@ nav {
 }
 
 .vinyle-layout {
-    color: rgb(0, 0, 29);
     width: 15rem;
     margin: 1rem;
 
     div {
-        padding: 1rem;
+        margin: 0;
         width: 100%;
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
         text-align: center;
-        background-color: rgb(164, 185, 204);
     }
 
     div:hover {
@@ -80,15 +88,7 @@ nav {
 }
 
 .vinyle-article {
-    color: rgb(0, 0, 29);
-    background-color: rgb(164, 185, 204);
     width: 50%;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     img {
         width: 25%;
@@ -96,12 +96,5 @@ nav {
 }
 
 .vinyle-panier {
-    color: rgb(0, 0, 29);
-    background-color: rgb(164, 185, 204);
     width: 25%;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
 }

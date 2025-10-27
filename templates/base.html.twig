@@ -15,9 +15,9 @@
         <nav>
             <a href={{ path("home") }}>Accueil</a>
             <a href={{ path("panier") }}>Panier</a>
-            {% if connecte %}<a href={{ path("compte") }}>Compte</a>{% endif %}
-            {% if not connecte %}<a href={{ path("connexion") }}>Se connecter</a>{% endif %}
-            {% if not connecte %}<a href={{ path("inscription") }}>S'inscrire</a>{% endif %}
+            {% if app.user %}<a href={{ path("compte") }}>Compte</a>{% endif %}
+            {% if not app.user %}<a href={{ path("connexion") }}>Se connecter</a>{% endif %}
+            {% if not app.user %}<a href={{ path("inscription") }}>S'inscrire</a>{% endif %}
         </nav>
         {% block body %}{% endblock %}
     </body>

@@ -4,7 +4,7 @@
 {% endblock %}
 {% block body %}
 	<section class="vinyle-section">
-		<article class="vinyle-article">
+		<article class="vinyle-article conteneur colonne-centre">
 			<h1>{{ vinyle.getName() }}</h1>
 			<h2>{{ vinyle.getAuthor() }}</h2>
 			<img src="{{ vinyle.getImage().getUrl() }}">
@@ -13,7 +13,7 @@
 			<!-- mettre si possible avec le temps des genres -->
 		</article>
 
-		<article class="vinyle-panier">
+		<article class="vinyle-panier conteneur colonne-centre">
 			<h1>Ajouter au panier</h1>
 			<!-- voir comment implémenter un form avec symfony -->
 		</article>

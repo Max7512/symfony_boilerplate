@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
 	{% for vinyle in vinyles %}
-		<div class="vinyle-layout">
+		<div class="vinyle-layout conteneur colonne-centre">
 			<h1>{{ vinyle.getName() }}</h1>
 			<h2>{{ vinyle.getAuthor() }}</h2>
 			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
