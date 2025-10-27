@@ -137,12 +137,6 @@ class Vinyle
 
     public function setStatus(VinyleStatus $status): static
     {
-        if ($status == VinyleStatus::IN_STOCK && $this->stock < 0) {
-            throw new Exception("Le stock doit être supérieur à 0 pour un vinyle en stock.");
-        } else if ($status == VinyleStatus::OUT_OF_STOCK && $this->stock >= 0) {
-            throw new Exception("Le stock doit être inférieur ou égal à 0 pour un vinyle en rupture de stock.");
-        }
-
         $this->status = $status;
 
         return $this;

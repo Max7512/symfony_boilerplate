@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\PanierItem;
+use App\Entity\User;
+use App\Entity\Vinyle;
 use App\Util\OrderStatus;
 use App\Util\VinyleStatus;
-use DateTime;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -17,8 +18,8 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $userRepository = $manager->getRepository("User");
-        $vinyleRepository = $manager->getRepository("Vinyle");
+        $userRepository = $manager->getRepository(User::class);
+        $vinyleRepository = $manager->getRepository(Vinyle::class);
 
         $users = $userRepository->findAll();
         $vinyles = $vinyleRepository->findAll();
@@ -28,12 +29,12 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
             $orderItems = [];
 
             for ($i = 0; $i < rand(0, 10); $i++) {
-                $vinyle = $vinyles[array_rand($vinyles)];
-                if ($vinyle->getStatus() != VinyleStatus::OUT_OF_STOCK) $panier[$vinyle] = rand(1, $vinyle->getStock());
+                $vinyle = $vinyles[mt_rand(0, count($vinyles) - 1)];
+                if ($vinyle->getStatus() != VinyleStatus::OUT_OF_STOCK) $panier[$vinyle] = mt_rand(1, $vinyle->getStock());
             }
 
             for ($i = 0; $i < count($panier); $i++) {
-                if (rand(0, 1)) {
+                if (mt_rand(0, 1)) {
                     $orderItems[$vinyle] = $panier[$vinyle];
                     $panier[$vinyle] = 0;
                 }
@@ -42,7 +43,7 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
             if (count($orderItems) > 0) {
                 $order = new Order();
                 $order->setUser($user);
-                $order->setStatus(match (rand(0, 3)) {
+                $order->setStatus(match (mt_rand(0, 3)) {
                     0 => OrderStatus::IN_PREPARATION,
                     1 => OrderStatus::SENT,
                     2 => OrderStatus::DELIVERED,
@@ -56,7 +57,10 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
                     $orderItem->setVinyle($vinyle);
                     $orderItem->setQuantity($quantity);
                     $order->addOrderItem($orderItem);
+
+                    $manager->persist($orderItem);
                 }
+                $manager->persist($order);
                 $user->addOrder($order);
             }
 
@@ -67,13 +71,15 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
                     $panierItem->setVinyle($vinyle);
                     $panierItem->setQuantity($quantity);
                     $user->addPanierItem($panierItem);
+
+                    $manager->persist($panierItem);
                 }
             }
 
             $manager->persist($user);
-        }
 
-        $manager->flush();
+            $manager->flush();
+        }
     }
 
     public function getDependencies(): array

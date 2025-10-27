@@ -19,9 +19,9 @@ class VinyleFixtures extends Fixture
                 $vinyle->setName($title);
                 $image->setUrl($cover);
                 $vinyle->setImage($image);
-                $vinyle->setPrice(rand(1999, 3999) / 100);
+                $vinyle->setPrice(mt_rand(1999, 3999) / 100);
                 $vinyle->setDescription($title.": Album de ".$author);
-                $vinyle->setStock(rand(0,30), rand(0,1));
+                $vinyle->setStock(mt_rand(0,30));
 
                 $manager->persist($vinyle);
             }

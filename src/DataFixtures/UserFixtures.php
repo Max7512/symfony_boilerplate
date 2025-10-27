@@ -11,38 +11,48 @@ class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 20; $i++) {
+        $picked = [];
+
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
 
-            $firstName = $this::firstNames[array_rand($this::firstNames)];
-            $lastName = $this::lastNames[array_rand($this::lastNames)];
+            $firstName = "";
+            $lastName = "";
+
+            do {
+                $firstName = $this::firstNames[mt_rand(0, count($this::firstNames) - 1)]; // ne marche pas car pour quelques raisons les fonctions aléatoires donnent toujours le meme nombre
+                $lastName = $this::lastNames[mt_rand(0, count($this::lastNames) - 1)];
+            } while (in_array($firstName . $lastName, $picked));
+
+            array_push($picked, $firstName . $lastName);
 
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($firstName . $lastName . "@truc.com");
-            $user->setPassword("$2y$13$9uGgMHtDM55GkvNLMdCmsOjqvTzbncvbArUd0iJ3KC/7joD205WwK");
+            $user->setPassword("$2y$13$9uGgMHtDM55GkvNLMdCmsOjqvTzbncvbArUd0iJ3KC/7joD205WwK"); // 00000000
 
             $roles = ["ROLE_USER"];
 
-            if (rand(0, 10) == 10) array_push($roles, "ROLE_ADMIN");
+            if (mt_rand(0, 10) == 10) array_push($roles, "ROLE_ADMIN");
 
             $user->setRoles($roles);
 
-            for ($i = 0; $i < rand(0, 3); $i++) {
+            for ($i = 0; $i < mt_rand(0, 3); $i++) {
                 $address = new Address();
 
-                $address->setStreet($this::streets[array_rand($this::streets)]);
-                $address->setCity($this::cities[array_rand($this::cities)]);
-                $address->setPostalCode($this::postalCodes[array_rand($this::postalCodes)]);
-                $address->setCountry($this::countries[array_rand($this::countries)]);
+                $address->setStreet($this::streets[mt_rand(0, count($this::streets) - 1)]);
+                $address->setCity($this::cities[mt_rand(0, count($this::cities) - 1)]);
+                $address->setPostalCode($this::postalCodes[mt_rand(0, count($this::postalCodes) - 1)]);
+                $address->setCountry($this::countries[mt_rand(0, count($this::countries) - 1)]);
 
                 $user->addAddress($address);
+
+                $manager->persist($address);
             }
 
             $manager->persist($user);
+            $manager->flush();
         }
-
-        $manager->flush();
     }
 
     const firstNames = [
