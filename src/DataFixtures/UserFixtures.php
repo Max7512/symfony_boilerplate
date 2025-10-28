@@ -11,20 +11,21 @@ class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $picked = [];
+        $possibleNames = [];
+        foreach ($this::firstNames as $firstName) {
+            foreach ($this::lastNames as $lastName) {
+                $possibleNames[] = ["firstName" => $firstName, "lastName" => $lastName]; // pour une raison inconnue les boucle for et do while précédement mises en place posaient un problème avec la gestion de l'aléatoire et se bloquaient tout le temps en essayant de créer des noms uniques
+            }
+        }
+
+        shuffle($possibleNames); // pour contourner le problème précedent j'ai donc décidé de générer tout les noms possibles puis mélanger la liste pour prendre arbitrairement dans l'ordre les noms, je perd malheureusement de l'efficacité avec ce système jusqu'à trouver une solution
 
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
 
-            $firstName = "";
-            $lastName = "";
-
-            do {
-                $firstName = $this::firstNames[mt_rand(0, count($this::firstNames) - 1)]; // ne marche pas car pour quelques raisons les fonctions aléatoires donnent toujours le meme nombre
-                $lastName = $this::lastNames[mt_rand(0, count($this::lastNames) - 1)];
-            } while (in_array($firstName . $lastName, $picked));
-
-            array_push($picked, $firstName . $lastName);
+            $name = $possibleNames[$i];
+            $firstName = $name["firstName"];
+            $lastName = $name["lastName"];
 
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
@@ -33,17 +34,20 @@ class UserFixtures extends Fixture
 
             $roles = ["ROLE_USER"];
 
-            if (mt_rand(0, 10) == 10) array_push($roles, "ROLE_ADMIN");
+            if (mt_rand(0, 10) == 10) {
+                $roles[] = "ROLE_ADMIN";
+            }
 
             $user->setRoles($roles);
 
-            for ($i = 0; $i < mt_rand(0, 3); $i++) {
+            $addressCount = mt_rand(1, 3);
+            for ($j = 0; $j < $addressCount; $j++) {
                 $address = new Address();
 
-                $address->setStreet($this::streets[mt_rand(0, count($this::streets) - 1)]);
-                $address->setCity($this::cities[mt_rand(0, count($this::cities) - 1)]);
-                $address->setPostalCode($this::postalCodes[mt_rand(0, count($this::postalCodes) - 1)]);
-                $address->setCountry($this::countries[mt_rand(0, count($this::countries) - 1)]);
+                $address->setStreet($this::streets[array_rand($this::streets)]);
+                $address->setCity($this::cities[array_rand($this::cities)]);
+                $address->setPostalCode($this::postalCodes[array_rand($this::postalCodes)]);
+                $address->setCountry($this::countries[array_rand($this::countries)]);
 
                 $user->addAddress($address);
 
@@ -51,8 +55,8 @@ class UserFixtures extends Fixture
             }
 
             $manager->persist($user);
-            $manager->flush();
         }
+        $manager->flush();
     }
 
     const firstNames = [

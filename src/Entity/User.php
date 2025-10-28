@@ -42,12 +42,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastName = null;
 
     /**
-     * @var Collection<int, Address>
-     */
-    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'address')]
-    private Collection $Address;
-
-    /**
      * @var Collection<int, Order>
      */
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'User')]
@@ -59,11 +53,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: PanierItem::class, mappedBy: 'User')]
     private Collection $panierItems;
 
+    /**
+     * @var Collection<int, Address>
+     */
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'user')]
+    private Collection $Address;
+
     public function __construct()
     {
-        $this->Address = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->panierItems = new ArrayCollection();
+        $this->Address = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -172,36 +172,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Address>
-     */
-    public function getAddress(): Collection
-    {
-        return $this->Address;
-    }
-
-    public function addAddress(Address $address): static
-    {
-        if (!$this->Address->contains($address)) {
-            $this->Address->add($address);
-            $address->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAddress(Address $address): static
-    {
-        if ($this->Address->removeElement($address)) {
-            // set the owning side to null (unless already changed)
-            if ($address->getUser() === $this) {
-                $address->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Order>
      */
     public function getOrders(): Collection
@@ -255,6 +225,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($panierItem->getUser() === $this) {
                 $panierItem->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddress(): Collection
+    {
+        return $this->Address;
+    }
+
+    public function addAddress(Address $address): static
+    {
+        if (!$this->Address->contains($address)) {
+            $this->Address->add($address);
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): static
+    {
+        if ($this->Address->removeElement($address)) {
+            // set the owning side to null (unless already changed)
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
             }
         }
 

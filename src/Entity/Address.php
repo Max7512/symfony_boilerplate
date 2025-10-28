@@ -27,15 +27,15 @@ class Address
     #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Address')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
     /**
      * @var Collection<int, Order>
      */
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'Address')]
     private Collection $orders;
+
+    #[ORM\ManyToOne(inversedBy: 'Address')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -95,18 +95,6 @@ class Address
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Order>
      */
@@ -133,6 +121,18 @@ class Address
                 $order->setAddress(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

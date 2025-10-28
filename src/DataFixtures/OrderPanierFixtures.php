@@ -13,6 +13,7 @@ use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\ByteString;
 
 class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -30,13 +31,15 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
 
             for ($i = 0; $i < rand(0, 10); $i++) {
                 $vinyle = $vinyles[mt_rand(0, count($vinyles) - 1)];
-                if ($vinyle->getStatus() != VinyleStatus::OUT_OF_STOCK) $panier[$vinyle] = mt_rand(1, $vinyle->getStock());
+                if ($vinyle->getStatus() != VinyleStatus::OUT_OF_STOCK) {
+                    $panier[$vinyle->getId()] = mt_rand(1, $vinyle->getStock());
+                }
             }
 
-            for ($i = 0; $i < count($panier); $i++) {
+            foreach ($panier as $vinyleId => $quantity) {
                 if (mt_rand(0, 1)) {
-                    $orderItems[$vinyle] = $panier[$vinyle];
-                    $panier[$vinyle] = 0;
+                    $orderItems[$vinyleId] = $quantity;
+                    $panier[$vinyleId] = 0;
                 }
             }
 
@@ -50,12 +53,16 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
                     3 => OrderStatus::CANCELLED
                 });
                 $order->setCreatedAt(new DateTimeImmutable());
-                $order->setReference(random_bytes(32));
-                foreach ($orderItems as $vinyle => $quantity) {
+                $order->setReference(ByteString::fromRandom(32)->toString()); // Génère une chaîne aléatoire de 32 caractères normalement
+                $order->setAddress($user->getAddress()[mt_rand(0, count($user->getAddress()) - 1)]);
+
+                foreach ($orderItems as $vinyleId => $quantity) {
+                    $vinyle = $vinyleRepository->find($vinyleId);
                     $orderItem = new OrderItem();
                     $orderItem->setOrder($order);
                     $orderItem->setVinyle($vinyle);
                     $orderItem->setQuantity($quantity);
+                    $orderItem->setProductPrice($vinyle->getPrice());
                     $order->addOrderItem($orderItem);
 
                     $manager->persist($orderItem);
@@ -64,11 +71,11 @@ class OrderPanierFixtures extends Fixture implements DependentFixtureInterface
                 $user->addOrder($order);
             }
 
-            foreach ($panier as $vinyle => $quantity) {
+            foreach ($panier as $vinyleId => $quantity) {
                 if ($quantity > 0) {
                     $panierItem = new PanierItem();
                     $panierItem->setUser($user);
-                    $panierItem->setVinyle($vinyle);
+                    $panierItem->setVinyle($vinyleRepository->find($vinyleId));
                     $panierItem->setQuantity($quantity);
                     $user->addPanierItem($panierItem);
 
