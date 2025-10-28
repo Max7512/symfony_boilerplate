@@ -1,0 +1,9 @@
+titre: Connexion
+formulaire:
+    titre: Connectez vous
+    email_label: Email
+    mot_de_passe_label: Mot de passe
+    se_souvenir_de_moi_label: Se souvenir de moi
+    bouton_submit: Se connecter
+connecte_en_tant_que: 'Vous êtes connecté en tant que :'
+lien_deconnexion: Se déconnecter

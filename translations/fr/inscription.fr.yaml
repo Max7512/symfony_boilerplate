@@ -1,0 +1,6 @@
+titre: Inscription
+formulaire:
+    titre: Inscription
+    accepter_conditions_label: "Accepter les termes"
+    mot_de_passe_label: "Mot de passe"
+    bouton_submit: "S'inscrire"

@@ -1,14 +1,28 @@
+{% trans_default_domain 'panier' %}
 {% extends 'base.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Panier
+	| {{ 'titre'|trans }}
 {% endblock %}
+
 {% block body %}
-	{% for vinyle in vinyles %}
-		<div class="vinyle-layout conteneur colonne-centre">
-			<h1>{{ vinyle.getName() }}</h1>
-			<h2>{{ vinyle.getAuthor() }}</h2>
-			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
-		</div>
-	{% endfor %}
+    <div class="panier conteneur colonne-centre">
+        <h1>{{ 'mon_panier'|trans }}</h1>
+
+        {% if vinyles is empty %}
+            <p>{{ 'panier_vide'|trans }}</p>
+        {% else %}
+            {% for vinyle in vinyles %}
+                <div class="vinyle-layout conteneur colonne-centre">
+                    <h1>{{ vinyle.getName() }}</h1>
+                    <h2>{{ vinyle.getAuthor() }}</h2>
+                    <img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+                </div>
+            {% endfor %}
+
+            <h2>{{ 'total'|trans }} : {{ total }} €</h2>
+
+            <button>{{ 'bouton_payer'|trans }}</button>
+        {% endif %}
+    </div>
 {% endblock %}

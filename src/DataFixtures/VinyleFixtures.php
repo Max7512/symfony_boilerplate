@@ -49,7 +49,7 @@ class VinyleFixtures extends Fixture
             "Iowa" => "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Slipknot_Iowa.jpg/250px-Slipknot_Iowa.jpg",
             "Vol 3: The subliminal verses" => "https://cdn-images.dzcdn.net/images/cover/35b093d22fe1539003d5d18dd8f309eb/500x500-000000-80-0-0.jpg",
             "All hope is gone" => "https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/All_Hope_is_Gone_%28original%29.jpg/250px-All_Hope_is_Gone_%28original%29.jpg",
-            ".5 The gray chapter" => "https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2Fd3325a124f8d1042554e8babaec6fc50.1000x1000x1.jpg",
+            ".5: The gray chapter" => "https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2Fd3325a124f8d1042554e8babaec6fc50.1000x1000x1.jpg",
             "We are not your kind" => "https://static.fnac-static.com/multimedia/Images/FR/NR/1c/17/9b/10163996/1540-1/tsp20190517165949/We-Are-Not-Your-Kind.jpg",
             "The end so far" => "https://linkstorage.linkfire.com/medialinks/images/18a713bc-c87d-4cf9-be45-961ed6183960/artwork-440x440.jpg"
         ]

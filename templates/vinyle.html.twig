@@ -1,22 +1,21 @@
+{% trans_default_domain 'vinyle' %}
 {% extends "base.html.twig" %}
 {% block title %}
 	{{ vinyle.getName() }}
 {% endblock %}
+
 {% block body %}
 	<section class="vinyle-section">
 		<article class="vinyle-article conteneur colonne-centre">
 			<h1>{{ vinyle.getName() }}</h1>
 			<h2>{{ vinyle.getAuthor() }}</h2>
-			<img src="{{ vinyle.getImage().getUrl() }}">
-			<label>Prix : {{ vinyle.getPrice() }} €</label>
+			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+			<label>{{ 'prix_label'|trans }} {{ vinyle.getPrice() }} €</label>
 			<p>{{ vinyle.getDescription() }}</p>
-			<!-- mettre si possible avec le temps des genres -->
 		</article>
 
 		<article class="vinyle-panier conteneur colonne-centre">
-			<h1>Ajouter au panier</h1>
-			<!-- voir comment implémenter un form avec symfony -->
+			<h1>{{ 'titre_ajout_panier'|trans }}</h1>
 		</article>
 	</section>
-	<!-- mettre si possible des suggestions de vinyles en rapport avec les genre, auteur etc -->
 {% endblock %}

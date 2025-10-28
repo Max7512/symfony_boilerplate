@@ -1,0 +1,9 @@
+titre: Login
+formulaire:
+    titre: Log in
+    email_label: Email
+    mot_de_passe_label: Password
+    se_souvenir_de_moi_label: Remember me
+    bouton_submit: Sign in
+connecte_en_tant_que: 'You are logged in as:'
+lien_deconnexion: Logout

@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class ConnexionController extends AbstractController
+class ConnexionController extends BaseController
 {
     #[Route(path: '/connexion', name: 'connexion')]
     public function login(AuthenticationUtils $authenticationUtils): Response

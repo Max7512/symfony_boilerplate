@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class CompteController extends AbstractController
+class CompteController extends BaseController
 {
     #[Route('/compte', name: 'compte')]
     public function compte(): Response

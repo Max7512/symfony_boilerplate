@@ -7,4 +7,10 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+const localeSelect = document.getElementById("localeSelect")
+
+const urlLocaleSwitch = "/switch-locale/"
+
+localeSelect.addEventListener("change", (ev) => {
+    location.href = urlLocaleSwitch + ev.target.value
+})

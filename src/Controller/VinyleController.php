@@ -5,9 +5,8 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\VinyleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class VinyleController extends AbstractController
+class VinyleController extends BaseController
 {
     public ?VinyleRepository $vinyleRepository = null;
 

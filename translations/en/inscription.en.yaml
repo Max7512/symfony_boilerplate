@@ -1,0 +1,6 @@
+titre: Register
+formulaire:
+    titre: Register
+    accepter_conditions_label: "Agree to terms"
+    mot_de_passe_label: "Password"
+    bouton_submit: "Register"
