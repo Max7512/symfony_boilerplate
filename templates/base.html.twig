@@ -19,11 +19,14 @@
             {% if app.user %}<a href={{ path("compte") }}>{{ "nav.compte"|trans }}</a>{% endif %}
             {% if not app.user %}<a href={{ path("connexion") }}>{{ "nav.connexion"|trans }}</a>{% endif %}
             {% if not app.user %}<a href={{ path("inscription") }}>{{ "nav.inscription"|trans }}</a>{% endif %}
-            <select id="localeSelect">
-                {% for locale in locales %}
-                    <option value="{{ locale }}" {% if locale == app.locale %}selected{% endif %}>{{ locale|upper }}</option>
-                {% endfor %}
-            </select>
+            <span>
+                <img src="{{ asset("images/" ~ app.locale ~ ".jpg") }}" alt="{{ app.locale|upper }}">
+                <select id="localeSelect">
+                    {% for locale in locales %}
+                        <option value="{{ locale }}" {% if locale == app.locale %}selected{% endif %}>{{ locale|upper }}</option>
+                    {% endfor %}
+                </select>
+            </span>
         </nav>
         {% block body %}{% endblock %}
     </body>

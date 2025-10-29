@@ -19,6 +19,6 @@ class SwitchLocaleController extends AbstractController
             return $this->redirect($referer);
         }
 
-        return $this->redirectToRoute('accueil');
+        return $this->redirectToRoute('home');
     }
 }
