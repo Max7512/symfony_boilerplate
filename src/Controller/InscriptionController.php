@@ -34,7 +34,7 @@ class InscriptionController extends BaseController
             return $this->redirectToRoute('home');
         }
 
-        return $this->renderAndSwitchLocale($request, 'inscription.html.twig', [
+        return $this->render('inscription.html.twig', [
             'registrationForm' => $form,
         ]);
     }
