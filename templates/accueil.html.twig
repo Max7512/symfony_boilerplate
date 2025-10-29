@@ -7,14 +7,16 @@
 {% block body %}
 	<div class="vinyles">
 		{% for vinyle in vinyles %}
-			<a href={{ path("vinyle", { "id": vinyle.getId() } ) }} class="vinyle-layout">
-				<div class="conteneur colonne-centre">
-					<h1>{{ vinyle.getName() }}</h1>
-					<h2>{{ vinyle.getAuthor() }}</h2>
-					<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
-					<label>{{ 'prix_label'|trans }} {{ vinyle.getPrice() }} €</label>
-			</div>
-			</a>
+			<span class="vinyle-layout">
+				<a href={{ path("vinyle", { "id": vinyle.getId() } ) }}>
+					<div class="conteneur colonne-centre">
+						<h1>{{ vinyle.getName() }}</h1>
+						<h2>{{ vinyle.getAuthor() }}</h2>
+						<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+						<label>{{ 'prix_label'|trans }} {{ vinyle.getPrice() }} €</label>
+					</div>
+				</a>
+			</span>
 		{% endfor %}
 	</div>
 {% endblock %}
