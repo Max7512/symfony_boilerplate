@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PanierController extends BaseController
 {
     #[Route('/panier', name: 'panier')]
-    public function panier(): Response
+    public function panier(Request $request): Response
     {
-        return $this->render('panier.html.twig');
+        return $this->renderAndSwitchLocale($request, 'panier.html.twig');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\VinyleRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class VinyleController extends BaseController
 {
@@ -16,8 +17,8 @@ class VinyleController extends BaseController
     }
 
     #[Route("/vinyle/{id}", name: "vinyle")]
-    public function vinyle(string $id): Response
+    public function vinyle(string $id, Request $request): Response
     {
-        return $this->render("vinyle.html.twig", ["vinyle" => $this->vinyleRepository->find($id)]);
+        return $this->renderAndSwitchLocale($request, "vinyle.html.twig", ["vinyle" => $this->vinyleRepository->find($id)]);
     }
 }

@@ -13,6 +13,7 @@ class SwitchLocaleController extends AbstractController
     public function switch(string $locale, Request $request): Response
     {
         $request->getSession()->set('_locale', $locale);
+        $request->setLocale($locale);
 
         $referer = $request->headers->get('referer');
         if ($referer) {

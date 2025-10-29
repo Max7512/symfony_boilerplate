@@ -20,6 +20,6 @@ class HomeController extends BaseController
     #[Route("/", name: "home")]
     public function home(#[MapQueryParameter] ?string $search = null, #[MapQueryParameter] ?int $pageLimit = null, Request $request): Response
     {
-        return $this->render("accueil.html.twig", ["vinyles" => $this->vinyleRepository->getAllPaginate($request, $search, $pageLimit)]);
+        return $this->renderAndSwitchLocale($request, "accueil.html.twig", ["vinyles" => $this->vinyleRepository->getAllPaginate($request, $search, $pageLimit)]);
     }
 }
