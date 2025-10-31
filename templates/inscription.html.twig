@@ -6,12 +6,11 @@
 {% endblock %}
 
 {% block body %}
-	<div class="inscription conteneur colonne-centre">
-		<h1>{{ 'formulaire.titre'|trans }}</h1>
-
-		{{ form_errors(registrationForm) }}
+	<div class="colonne-centre">
 
 		{{ form_start(registrationForm) }}
+		<h1>{{ 'formulaire.titre'|trans }}</h1>
+		{{ form_errors(registrationForm) }}
 		{{ form_row(registrationForm.email) }}
 		{{ form_row(registrationForm.plainPassword, {
             label: 'formulaire.mot_de_passe_label'|trans

@@ -3,5 +3,5 @@ nav:
     accueil: Home
     panier: Cart
     compte: Account
-    connexion: Login
-    inscription: Register
+    connexion: Sign in
+    inscription: Sign up

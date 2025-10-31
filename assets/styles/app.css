@@ -2,6 +2,7 @@ body {
     background-color: rgb(16, 35, 43);
     color: aliceblue;
     margin: 0px;
+    margin-top: 5rem;
     font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
 }
 
@@ -10,7 +11,7 @@ a {
 }
 
 nav {
-    position: static;
+    position: fixed;
     top: 0;
     width: 100%;
     background-color: rgb(9, 8, 29);
@@ -36,14 +37,19 @@ nav {
     }
 
     span {
-        width: 5%;
+        width: 10%;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
 
         img {
-            width: 50%;
+            width: 5rem;
+        }
+
+        select {
+            width: 5rem;
+            font-size: xx-large;
         }
     }
 }
@@ -112,4 +118,41 @@ nav {
 
 .vinyle-panier {
     width: 25%;
+}
+
+.connexion-inscription {
+    width: 40rem;
+    font-size: 150%;
+
+    div {
+        width: 90%;
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    input,
+    button {
+        background-color: aliceblue;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        font-size: 65%;
+    }
+
+    input {
+        width: 50%;
+    }
+
+    input[type=checkbox] {
+        height: 1.5rem;
+    }
+
+    input[type=checkbox]:hover,
+    button[type=submit]:hover {
+        cursor: pointer;
+        background-color: rgb(175, 186, 196);
+    }
 }
