@@ -6,23 +6,23 @@
 {% endblock %}
 
 {% block body %}
-    <div class="panier conteneur colonne-centre">
-        <h1>{{ 'mon_panier'|trans }}</h1>
+    <div class="panier colonne-centre">
+        <h1>{{ 'titre'|trans }}</h1>
 
-        {% if vinyles is empty %}
-            <p>{{ 'panier_vide'|trans }}</p>
+        {% if panier is empty %}
+            <p>{{ 'panier.vide'|trans }}</p>
         {% else %}
-            {% for vinyle in vinyles %}
+            {% for panierItem in panier %}
                 <div class="vinyle-layout conteneur colonne-centre">
-                    <h1>{{ vinyle.getName() }}</h1>
-                    <h2>{{ vinyle.getAuthor() }}</h2>
-                    <img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+                    <h1>{{ panierItem.getVinyle().getName() }}</h1>
+                    <h2>{{ panierItem.getVinyle().getAuthor() }}</h2>
+                    <img src="{{ panierItem.getVinyle().getImage().getUrl() }}" alt="{{ panierItem.getVinyle().getName() }}">
                 </div>
             {% endfor %}
 
-            <h2>{{ 'total'|trans }} : {{ total }} €</h2>
+            <label>{{ 'panier.total'|trans }} : {{ total }} €</label>
 
-            <button>{{ 'bouton_payer'|trans }}</button>
+            <button>{{ 'panier.payer'|trans }}</button>
         {% endif %}
     </div>
 {% endblock %}

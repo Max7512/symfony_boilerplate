@@ -1,6 +1,18 @@
+:root {
+    --primaryBackgroundColor: rgb(16, 35, 43);
+    --primaryButtonBackgroundColor: aliceblue;
+    --secondaryBackgroundColor: rgb(164, 185, 204);
+    --secondaryBackgroundColorHover: rgb(136, 169, 199);
+    --secondaryButtonBackgroundColor: rgb(175, 186, 196);
+    --primaryTextColor: aliceblue;
+    --secondaryTextColor: rgb(0, 0, 29);
+    --primaryNavigationBackgroundColor: rgb(9, 8, 29);
+    --secondaryNavigationBackgroundColor: rgb(3, 2, 26);
+  }
+
 body {
-    background-color: rgb(16, 35, 43);
-    color: aliceblue;
+    background-color: var(--primaryBackgroundColor);
+    color: var(--primaryTextColor);
     margin: 0px;
     margin-top: 5rem;
     font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
@@ -10,11 +22,35 @@ a {
     text-decoration: none;
 }
 
+input,
+button {
+    background-color: var(--primaryButtonBackgroundColor);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: 15rem;
+    height: 3rem;
+}
+
+input[type=checkbox] {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+input[type=button]:hover,
+input[type=checkbox]:hover,
+button:hover {
+    cursor: pointer;
+    background-color: var(--secondaryButtonBackgroundColor);
+    color: var(--secondaryButtonTextColor);
+    border: solid var(--primaryButtonBackgroundColor) 3px;
+}
+
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgb(9, 8, 29);
+    background-color: var(--primaryNavigationBackgroundColor);
     height: 5rem;
     display: flex;
     flex-direction: row;
@@ -22,7 +58,7 @@ nav {
     justify-content: space-around;
 
     a {
-        color: aliceblue;
+        color: var(--primaryTextColor);
         width: 25%;
         height: 100%;
         text-align: center;
@@ -33,7 +69,7 @@ nav {
     }
 
     a:hover {
-        background-color: rgb(3, 2, 26);
+        background-color: var(--secondaryNavigationBackgroundColor);
     }
 
     span {
@@ -55,8 +91,8 @@ nav {
 }
 
 .conteneur {
-    color: rgb(0, 0, 29);
-    background-color: rgb(164, 185, 204);
+    color: var(--secondaryTextColor);
+    background-color: var(--secondaryBackgroundColor);
     padding: 1rem;
     margin: 1rem;
     border-radius: 1rem;
@@ -88,7 +124,7 @@ nav {
     }
 
     div:hover {
-        background-color: rgb(136, 169, 199);
+        background-color: var(--secondaryBackgroundColorHover);
     }
 
     img {
@@ -133,26 +169,8 @@ nav {
         justify-content: space-between;
     }
 
-    input,
-    button {
-        background-color: aliceblue;
-        border: none;
-        padding: 0.5rem;
-        border-radius: 1rem;
-        font-size: 65%;
-    }
-
     input {
         width: 50%;
-    }
-
-    input[type=checkbox] {
-        height: 1.5rem;
-    }
-
-    input[type=checkbox]:hover,
-    button[type=submit]:hover {
-        cursor: pointer;
-        background-color: rgb(175, 186, 196);
+        font-size: 65%;
     }
 }
