@@ -7,9 +7,12 @@ use App\Util\OrderStatus;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
+#[ORM\UniqueConstraint(name: "UNIQ_ORDER_REFERENCE", fields: ["reference"])]
+#[UniqueEntity(fields: ['reference'], message: 'There is already an order with this reference')]
 class Order
 {
     #[ORM\Id]

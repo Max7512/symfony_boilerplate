@@ -9,25 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 class PanierItem
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\ManyToOne(inversedBy: 'panierItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Vinyle $Vinyle = null;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'panierItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $User = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getVinyle(): ?Vinyle
     {
