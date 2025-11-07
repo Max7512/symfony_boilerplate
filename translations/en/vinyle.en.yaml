@@ -1,2 +1,5 @@
 prix_label: "Price :"
-titre_ajout_panier: "Add to cart"
+formulaire: 
+    titre: "Add to cart"
+    bouton_submit: "Add to cart"
+    quantite: "Quantity"

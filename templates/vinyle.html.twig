@@ -10,12 +10,21 @@
 			<h1>{{ vinyle.getName() }}</h1>
 			<h2>{{ vinyle.getAuthor() }}</h2>
 			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
-			<label>{{ 'prix_label'|trans }} {{ vinyle.getPrice() }} €</label>
+			<label>{{ 'prix_label'|trans }}
+				{{ vinyle.getPrice() }}
+				€</label>
 			<p>{{ vinyle.getDescription() }}</p>
 		</article>
 
 		<article class="vinyle-panier conteneur colonne-centre">
-			<h1>{{ 'titre_ajout_panier'|trans }}</h1>
+			{{ form_start(addToCartForm) }}
+			<h1>{{ 'formulaire.titre'|trans }}</h1>
+			{{ form_errors(addToCartForm) }}
+			{{ form_row(addToCartForm.quantity, {
+				label: "formulaire.quantite"|trans
+			}) }}
+			<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
+			{{ form_end(addToCartForm) }}
 		</article>
 	</section>
 {% endblock %}

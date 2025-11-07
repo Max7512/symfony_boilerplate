@@ -26,6 +26,23 @@ class PanierItemRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function getUserPanierItem(int $userId, int $vinyleId): ?PanierItem {
+        $dql = "SELECT panierItem FROM App\Entity\PanierItem panierItem JOIN panierItem.User user JOIN panierItem.Vinyle vinyle WHERE user.id = :userId AND vinyle.id = :vinyleId";
+
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        $query->setParameter('userId', $userId);
+        $query->setParameter('vinyleId', $vinyleId);
+
+        $result = $query->getResult();
+
+        if (count($result) > 0) {
+            return $result[0];
+        } else {
+            return null;
+        }
+    }
+
     public function getUserPanierTotal(int $userId): float {
         $dql = "SELECT SUM(vinyle.price * panierItem.quantity) total FROM App\Entity\PanierItem panierItem JOIN panierItem.User as user JOIN panierItem.Vinyle as vinyle WHERE user.id = :userId";
 

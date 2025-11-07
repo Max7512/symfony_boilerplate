@@ -26,7 +26,7 @@ input,
 button {
     background-color: var(--primaryButtonBackgroundColor);
     border: none;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     border-radius: 1rem;
     width: 15rem;
     height: 3rem;
@@ -155,6 +155,19 @@ nav {
 
 .vinyle-panier {
     width: 25%;
+
+    input {
+        width: 25%;
+        font-size: larger;
+    }
+
+    div {
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .connexion-inscription {
@@ -190,7 +203,6 @@ nav {
         }
 
         input {
-            padding: 0 0.5rem;
             width: 50%;
         }
     }
