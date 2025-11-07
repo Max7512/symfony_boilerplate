@@ -19,6 +19,7 @@ security:
             form_login:
                 login_path: connexion
                 check_path: connexion
+                enable_csrf: true
             logout:
                 path: deconnexion
                 # where to redirect after logout

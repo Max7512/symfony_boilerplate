@@ -49,6 +49,18 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add("first_name", null, [
+                "attr" => [
+                    "autocomplete" => "first_name",
+                    "autofocus" => null
+                ]
+            ])
+            ->add("last_name", null, [
+                "attr" => [
+                    "autocomplete" => "last_name",
+                    "autofocus" => null
+                ]
+            ])
         ;
     }
 

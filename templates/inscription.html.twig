@@ -12,6 +12,12 @@
 		<h1>{{ 'formulaire.titre'|trans }}</h1>
 		{{ form_errors(registrationForm) }}
 		{{ form_row(registrationForm.email) }}
+		{{ form_row(registrationForm.first_name, {
+			label: "formulaire.prenom_label"|trans
+		}) }}
+		{{ form_row(registrationForm.last_name, {
+			label: "formulaire.nom_label"|trans
+		}) }}
 		{{ form_row(registrationForm.plainPassword, {
             label: 'formulaire.mot_de_passe_label'|trans
         }) }}
