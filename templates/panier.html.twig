@@ -9,7 +9,7 @@
     <div class="panier colonne-centre">
         <h1>{{ 'titre'|trans }}</h1>
 
-        {% if panier is empty %}
+        {% if total <= 0 %}
             <p>{{ 'panier.vide'|trans }}</p>
         {% else %}
             {% for panierItem in panier %}

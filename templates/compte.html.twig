@@ -2,5 +2,26 @@
 {% extends 'base.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| {{ 'titre'|trans }}
+	|
+	{{ 'titre'|trans }}
+{% endblock %}
+{% block body %}
+	<div class="compte colonne-centre conteneur">
+		{{ form_start(accountEditForm) }}
+		<h1>{{ 'formulaire.titre'|trans }}</h1>
+		{{ form_errors(accountEditForm) }}
+		{{ form_row(accountEditForm.first_name, {
+			label: "formulaire.prenom_label"|trans
+		}) }}
+		{{ form_row(accountEditForm.last_name, {
+			label: "formulaire.nom_label"|trans
+		}) }}
+		{{ form_row(accountEditForm.plainPassword, {
+            label: 'formulaire.mot_de_passe_label'|trans
+        }) }}
+		<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
+		{{ form_end(accountEditForm) }}
+
+		<a href={{ path("deconnexion") }}><img src="{{ asset("images/ic_deconnexion.png") }}">{{ 'lien_deconnexion'|trans }}</a>
+	</div>
 {% endblock %}

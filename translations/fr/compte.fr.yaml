@@ -1,2 +1,8 @@
 titre: Compte
 lien_deconnexion: Se déconnecter
+formulaire:
+    titre: Mon compte
+    mot_de_passe_label: "Mot de passe"
+    bouton_submit: "Modifier le compte"
+    prenom_label: "Prenom"
+    nom_label: "Nom"

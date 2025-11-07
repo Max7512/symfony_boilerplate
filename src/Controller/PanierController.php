@@ -27,7 +27,12 @@ class PanierController extends BaseController
         }
 
         $panier = $this->panierItemRepository->getUserPanier($user->getId());
-        $total = $this->panierItemRepository->getUserPanierTotal($user->getId());
+
+        $total = 0;
+
+        if (count($panier) > 0) {
+            $total = $this->panierItemRepository->getUserPanierTotal($user->getId());
+        }
 
         return $this->render('panier.html.twig', [ "panier" => $panier, "total" => $total ]);
     }

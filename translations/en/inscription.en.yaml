@@ -4,3 +4,5 @@ formulaire:
     accepter_conditions_label: "Agree to terms"
     mot_de_passe_label: "Password"
     bouton_submit: "Sign up"
+    prenom_label: "First name"
+    nom_label: "Last name"

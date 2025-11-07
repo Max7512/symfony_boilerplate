@@ -1,2 +1,8 @@
 titre: Account
 lien_deconnexion: Sign out
+formulaire:
+    titre: My account
+    mot_de_passe_label: "Password"
+    bouton_submit: "Edit account"
+    prenom_label: "First name"
+    nom_label: "Last name"

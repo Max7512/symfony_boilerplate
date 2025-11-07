@@ -33,6 +33,14 @@ class PanierItemRepository extends ServiceEntityRepository
 
         $query->setParameter('userId', $userId);
 
-        return $query->getResult()[0]["total"];
+        $total = 0;
+
+        $result = $query->getResult();
+
+        if (count($result) > 0) {
+            $total = $result[0]["total"];
+        } 
+
+        return $total;
     }
 }
