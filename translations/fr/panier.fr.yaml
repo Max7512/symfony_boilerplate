@@ -1,5 +1,8 @@
 titre: Panier
 panier:
-  vide: Le panier est vide
-  payer: Payer
-  total: Total
+    vide: Le panier est vide
+    payer: Payer
+    total: Total
+vinyle:
+    quantite: Quantité
+    prix: Prix

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\PanierItemRepository;
-use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -23,7 +22,7 @@ class PanierController extends BaseController
         $user = $this->getUser();
 
         if (!$user instanceof User) {
-            throw new Exception("User is not logged in properly");
+            return $this->redirectToRoute('connexion');
         }
 
         $panier = $this->panierItemRepository->getUserPanier($user->getId());

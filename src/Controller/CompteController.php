@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AccountEditFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -19,7 +18,7 @@ class CompteController extends BaseController
         $user = $this->getUser();
 
         if (!$user instanceof User) {
-            throw new Exception("User is not logged in properly");
+            return $this->redirectToRoute('connexion');
         }
 
         $form = $this->createForm(AccountEditFormType::class, $user, ["attr" => ["class" => "modifier-compte conteneur colonne-centre"]]);

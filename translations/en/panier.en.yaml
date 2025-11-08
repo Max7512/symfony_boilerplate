@@ -1,5 +1,8 @@
 titre: Cart
 panier:
-  vide: Cart is empty
-  payer: Pay
-  total: Total
+    vide: Cart is empty
+    payer: Pay
+    total: Total
+vinyle:
+    quantite: Quantity
+    prix: Price

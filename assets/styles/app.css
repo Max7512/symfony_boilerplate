@@ -225,4 +225,8 @@ nav {
             filter: brightness(0) invert(1);
         }
     }
+
+    a:hover {
+        background-color: rgb(182, 0, 0);
+    }
 }

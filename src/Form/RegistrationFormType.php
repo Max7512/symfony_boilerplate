@@ -53,12 +53,22 @@ class RegistrationFormType extends AbstractType
                 "attr" => [
                     "autocomplete" => "first_name",
                     "autofocus" => null
+                ],
+                "constraints" => [
+                    new NotBlank([
+                        'message' => 'Entrez un prenom',
+                    ]),
                 ]
             ])
             ->add("last_name", null, [
                 "attr" => [
                     "autocomplete" => "last_name",
                     "autofocus" => null
+                ],
+                "constraints" => [
+                    new NotBlank([
+                        'message' => 'Entrez un nom',
+                    ]),
                 ]
             ])
         ;

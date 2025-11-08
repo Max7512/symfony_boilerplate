@@ -26,9 +26,6 @@ class Vinyle
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 64)]
-    private ?string $author = null;
-
     #[ORM\Column]
     private ?int $stock = null;
 
@@ -51,10 +48,21 @@ class Vinyle
     #[ORM\OneToMany(targetEntity: PanierItem::class, mappedBy: 'Vinyle')]
     private Collection $panierItems;
 
+    #[ORM\ManyToOne(inversedBy: 'vinyles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Author $author = null;
+
+    /**
+     * @var Collection<int, Genre>
+     */
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'vinyles')]
+    private Collection $genres;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
         $this->panierItems = new ArrayCollection();
+        $this->genres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,18 +102,6 @@ class Vinyle
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): static
-    {
-        $this->author = $author;
 
         return $this;
     }
@@ -210,6 +206,42 @@ class Vinyle
                 $panierItem->setVinyle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): static
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): static
+    {
+        $this->genres->removeElement($genre);
 
         return $this;
     }

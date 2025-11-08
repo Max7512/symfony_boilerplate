@@ -31,7 +31,7 @@ class VinyleRepository extends ServiceEntityRepository
 
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
-            $dql .= " WHERE vinyle.name LIKE :search OR vinyle.author LIKE :search";
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.name LIKE :search OR author.name LIKE :search";
         }
         $query = $this->getEntityManager()->createQuery($dql);
 

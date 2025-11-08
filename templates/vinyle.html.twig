@@ -3,12 +3,15 @@
 {% block title %}
 	{{ vinyle.getName() }}
 {% endblock %}
+{% block head %}
+	<link rel="icon" href="{{ vinyle.getImage().getUrl() }}">
+{% endblock %}
 
 {% block body %}
 	<section class="vinyle-section">
 		<article class="vinyle-article conteneur colonne-centre">
 			<h1>{{ vinyle.getName() }}</h1>
-			<h2>{{ vinyle.getAuthor() }}</h2>
+			<h2>{{ vinyle.getAuthor().getName() }}</h2>
 			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
 			<label>{{ 'prix_label'|trans }}
 				{{ vinyle.getPrice() }}
@@ -17,14 +20,19 @@
 		</article>
 
 		<article class="vinyle-panier conteneur colonne-centre">
-			{{ form_start(addToCartForm) }}
-			<h1>{{ 'formulaire.titre'|trans }}</h1>
-			{{ form_errors(addToCartForm) }}
-			{{ form_row(addToCartForm.quantity, {
+			{% if app.user %}
+				{{ form_start(addToCartForm) }}
+				<h1>{{ 'formulaire.titre'|trans }}</h1>
+				{{ form_errors(addToCartForm) }}
+				{{ form_row(addToCartForm.quantity, {
 				label: "formulaire.quantite"|trans
 			}) }}
-			<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
-			{{ form_end(addToCartForm) }}
+				<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
+				{{ form_end(addToCartForm) }}
+			{% else %}
+				<h1>{{ 'formulaire.titre'|trans }}</h1>
+				<p>{{ 'formulaire.connexion'|trans }}</p>
+			{% endif %}
 		</article>
 	</section>
 {% endblock %}

@@ -30,26 +30,30 @@ class VinyleController extends BaseController
         $vinyle = $this->vinyleRepository->find($id);
         $user = $this->getUser();
 
-        if (!$user instanceof User) {
-            throw new Exception("User is not logged in properly");
-        }
+        $form = null;
 
-        $panierItem = $this->panierItemRepository->getUserPanierItem($user->getId(), $vinyle->getId());
+        if ($user) {
+            if (!$user instanceof User) {
+                return $this->redirectToRoute('connexion');
+            }
 
-        if (!$panierItem) {
-            $panierItem = new PanierItem();
-            $panierItem->setVinyle($vinyle);
-            $panierItem->setUser($user);
-        }
+            $panierItem = $this->panierItemRepository->getUserPanierItem($user->getId(), $vinyle->getId());
 
-        $form = $this->createForm(AddToCartFormType::class, $panierItem, [ "attr" => [ "class" => "colonne-centre" ]]);
-        $form->handleRequest($request);
+            if (!$panierItem) {
+                $panierItem = new PanierItem();
+                $panierItem->setVinyle($vinyle);
+                $panierItem->setUser($user);
+            }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($panierItem);
-            $entityManager->flush();
+            $form = $this->createForm(AddToCartFormType::class, $panierItem, ["attr" => ["class" => "colonne-centre"]]);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('home');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->persist($panierItem);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render("vinyle.html.twig", ["vinyle" => $vinyle, "addToCartForm" => $form]);
