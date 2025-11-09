@@ -1,0 +1,30 @@
+.vinyle-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.vinyle-article {
+    width: 50%;
+
+    img {
+        width: 25%;
+    }
+}
+
+.vinyle-panier {
+    width: 25%;
+
+    input {
+        width: 25%;
+        font-size: larger;
+    }
+
+    div {
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

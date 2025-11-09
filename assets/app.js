@@ -5,7 +5,12 @@ import './bootstrap.js';
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
-import './styles/app.css';
+import './styles/base.css';
+import './styles/accueil.css';
+import './styles/compte.css';
+import './styles/connexion-inscription.css';
+import './styles/panier.css';
+import './styles/vinyle.css';
 
 const localeSelect = document.getElementById("localeSelect")
 
