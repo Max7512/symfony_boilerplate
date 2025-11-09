@@ -6,3 +6,5 @@ formulaire:
     bouton_submit: "Edit account"
     prenom_label: "First name"
     nom_label: "Last name"
+adresses: My addresses
+ajouter_adresse: Add address

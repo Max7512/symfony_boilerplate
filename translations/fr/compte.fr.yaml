@@ -6,3 +6,5 @@ formulaire:
     bouton_submit: "Modifier le compte"
     prenom_label: "Prenom"
     nom_label: "Nom"
+adresses: Mes adresses
+ajouter_adresse: Ajouter une adresse

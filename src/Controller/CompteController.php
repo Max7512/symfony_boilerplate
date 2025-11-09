@@ -21,7 +21,7 @@ class CompteController extends BaseController
             return $this->redirectToRoute('connexion');
         }
 
-        $form = $this->createForm(AccountEditFormType::class, $user, ["attr" => ["class" => "modifier-compte conteneur colonne-centre"]]);
+        $form = $this->createForm(AccountEditFormType::class, $user, ["attr" => ["class" => "modifier-compte colonne-centre"]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

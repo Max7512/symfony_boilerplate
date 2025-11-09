@@ -7,21 +7,30 @@
 {% endblock %}
 {% block body %}
 	<div class="compte colonne-centre conteneur">
-		{{ form_start(accountEditForm) }}
-		<h1>{{ 'formulaire.titre'|trans }}</h1>
-		{{ form_errors(accountEditForm) }}
-		{{ form_row(accountEditForm.first_name, {
+		<div class="ligne-centre">
+			{{ form_start(accountEditForm) }}
+			<h1>{{ 'formulaire.titre'|trans }}</h1>
+			{{ form_errors(accountEditForm) }}
+			{{ form_row(accountEditForm.first_name, {
 			label: "formulaire.prenom_label"|trans
-		}) }}
-		{{ form_row(accountEditForm.last_name, {
+			}) }}
+			{{ form_row(accountEditForm.last_name, {
 			label: "formulaire.nom_label"|trans
-		}) }}
-		{{ form_row(accountEditForm.plainPassword, {
+			}) }}
+			{{ form_row(accountEditForm.plainPassword, {
             label: 'formulaire.mot_de_passe_label'|trans
-        }) }}
-		<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
-		{{ form_end(accountEditForm) }}
+        	}) }}
+			<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
+			{{ form_end(accountEditForm) }}
+			<div class="colonne-centre adresses">
+				<h1>{{ "adresses"|trans }}</h1>
+				<div class="adresses-scroll">
+					{% include "layout/adresseLayout.html.twig" %}
+				</div>
+				<button class="bouton-vert ligne-centre"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
+			</div>
+		</div>
 
-		<a href={{ path("deconnexion") }}><img src="{{ asset("images/ic_deconnexion.png") }}">{{ 'lien_deconnexion'|trans }}</a>
+		<a href={{ path("deconnexion") }} class="ligne-centre bouton-rouge"><img src="{{ asset("images/ic_deconnexion.png") }}">{{ 'lien_deconnexion'|trans }}</a>
 	</div>
 {% endblock %}

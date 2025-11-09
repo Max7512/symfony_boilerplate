@@ -105,6 +105,13 @@ nav {
     justify-content: space-between;
 }
 
+.ligne-centre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .vinyles {
     display: flex;
     flex-wrap: wrap;
@@ -192,6 +199,7 @@ nav {
 .compte {
     .modifier-compte {
         width: 30rem;
+        height: 25rem;
 
         div {
             width: 90%;
@@ -208,25 +216,100 @@ nav {
     }
 
     a {
-        color: white;
-        background-color: red;
+        margin: 1rem;
         padding: 1rem;
         border-radius: 1rem;
         height: 2rem;
         width: 12rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
         font-size: larger;
-
-        img {
-            height: 100%;
-            filter: brightness(0) invert(1);
-        }
     }
 
     a:hover {
         background-color: rgb(182, 0, 0);
+    }
+
+    .bouton-vert {
+        border: none;
+        padding: 0.5rem;
+        justify-content: space-around;
+        color: white;
+    }
+
+    .adresses {
+        height: 25rem;
+    }
+
+    .adresses-scroll {
+        width: 30rem;
+        height: 13.5rem;
+    }
+}
+
+.bouton-rouge {
+    color: white;
+    background-color: red;
+
+    img {
+        height: 100%;
+        filter: brightness(0) invert(1);
+    }
+}
+
+.bouton-rouge:hover {
+    background-color: rgb(182, 0, 0);
+}
+
+.bouton-vert {
+    color: white;
+    background-color: green;
+
+    img {
+        height: 100%;
+        filter: brightness(0) invert(1);
+    }
+}
+
+.bouton-vert:hover {
+    background-color: rgb(0, 80, 0);
+}
+
+.adresses-scroll {
+    position: relative;
+    border: solid var(--primaryButtonBackgroundColor) 3px;
+    border-radius: 1rem;
+    background-color: var(--primaryBackgroundColor);
+}
+
+.adresses-layout {
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.adresse {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--secondaryBackgroundColor);
+
+    .adresse-info {
+        align-items: flex-start;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    button {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.5rem;
+        margin: 0.25rem;
+        border-radius: 0.5rem;
+        border: none;
+
+        img {
+            height: 100%;
+        }
     }
 }
