@@ -19,3 +19,10 @@ const urlLocaleSwitch = "/switch-locale/"
 localeSelect.addEventListener("change", (ev) => {
     location.href = urlLocaleSwitch + ev.target.value
 })
+
+const rechercheInput = document.getElementById("rechercheInput")
+
+if (rechercheInput)
+    rechercheInput.addEventListener("change", (ev) => {
+        location.href = `${location.pathname}?search=${rechercheInput.value}`
+    })
