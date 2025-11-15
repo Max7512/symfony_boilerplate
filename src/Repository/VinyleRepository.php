@@ -39,12 +39,8 @@ class VinyleRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function getAllPaginate(int $page = 1, ?string $search = null, ?int $pageLimit = null): PaginationInterface
+    public function getAllPaginate(int $page = 1, ?string $search = null, ?int $pageLimit = 25): PaginationInterface
     {
-        if ($pageLimit == null) {
-            $pageLimit = 25;
-        }
-
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
             $dql .= " JOIN vinyle.author as author WHERE vinyle.name LIKE :search OR author.name LIKE :search";

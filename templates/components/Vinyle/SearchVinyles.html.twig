@@ -3,6 +3,14 @@
 
     <input type="text" data-model="search" placeholder="{{ "recherche"|trans }}" class="form-control"/>
 
+    <div class="page-options ligne-centre">
+        <button data-action="pageMoins">-</button>
+        <p data-model="page"></p>
+        <button data-action="pagePlus">+</button>
+
+        <input type="number" data-model="pageLimit">
+    </div>
+
     <div class="vinyles">
         {% for vinyle in computed.vinyles %}
             <span class="vinyle-layout">
@@ -18,7 +26,7 @@
 				</a>
 			</span>
          {% else %}
-            No vinyles found "{{ query }}"
+            No vinyles found "{{ search }}"
         {% endfor %}
     </div>
 
