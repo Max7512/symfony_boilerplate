@@ -115,7 +115,9 @@ nav {
 .vinyle-layout {
     width: 12.6vw;
     margin: 1vw;
+    margin-top: 0;
     padding: 1vw;
+    padding-top: 0;
     display: inline-block;
 
     div {
@@ -207,4 +209,9 @@ nav {
             height: 100%;
         }
     }
+}
+
+.invisible {
+    opacity: 0;
+    cursor: default;
 }

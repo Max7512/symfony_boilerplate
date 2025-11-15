@@ -1,19 +1,28 @@
 {% trans_default_domain "accueil" %}
-<div{{ attributes }} class="colonne-centre">
+<div{{attributes}} class="colonne-centre">
 
-    <input type="text" data-model="search" placeholder="{{ "recherche"|trans }}" class="form-control"/>
+	<input type="text" data-model="search" placeholder="{{ "recherche"|trans }}" class="form-control" data-action="live#action" data-live-action-param="refreshPageOptions"/>
 
-    <div class="page-options ligne-centre">
-        <button data-action="pageMoins">-</button>
-        <p data-model="page"></p>
-        <button data-action="pagePlus">+</button>
+	<div class="page-options ligne-centre">
+		<span class="ligne-centre">
+			{% if this.page > 1 %}
+				<button data-action="live#action" data-live-action-param="pageMoins">-</button>
+			{% endif %}
+			<p>{{ this.page }}
+				/
+				{{ this.pageCount }}</p>
+			{% if this.page < this.pageCount %}
+				<button data-action="live#action" data-live-action-param="pagePlus">+</button>
+			{% endif %}
+		</span>
+		<span class="ligne-centre">
+			<input type="number" data-model="min_value(1)|pageLimit" data-action="live#action" data-live-action-param="refreshPageOptions">
+		</span>
+	</div>
 
-        <input type="number" data-model="pageLimit">
-    </div>
-
-    <div class="vinyles">
-        {% for vinyle in computed.vinyles %}
-            <span class="vinyle-layout">
+	<div class="vinyles">
+		{% for vinyle in computed.vinyles %}
+			<span class="vinyle-layout">
 				<a href={{ path("vinyle", { "id": vinyle.getId() } ) }}>
 					<div class="conteneur colonne-centre">
 						<h1>{{ vinyle.getName() }}</h1>
@@ -25,9 +34,11 @@
 					</div>
 				</a>
 			</span>
-         {% else %}
-            No vinyles found "{{ search }}"
-        {% endfor %}
-    </div>
+		{% else %}
+			<div class="colonne-centre" style="width: 100%;">
+				{{ "pas_trouve"|trans }}
+			</div>
+		{% endfor %}
+	</div>
 
 </div>
