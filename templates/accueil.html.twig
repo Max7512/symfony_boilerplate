@@ -7,22 +7,6 @@
 {% endblock %}
 {% block body %}
 	<div class="colonne-centre recherche-div">
-		<input type="text" id="rechercheInput" name="recherche" placeholder="{{ 'recherche'|trans }}" value="{{ search }}">
-	</div>
-	<div class="vinyles">
-		{% for vinyle in vinyles %}
-			<span class="vinyle-layout">
-				<a href={{ path("vinyle", { "id": vinyle.getId() } ) }}>
-					<div class="conteneur colonne-centre">
-						<h1>{{ vinyle.getName() }}</h1>
-						<h2>{{ vinyle.getAuthor().getName() }}</h2>
-						<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
-						<label>{{ 'prix_label'|trans }}
-							{{ vinyle.getPrice() }}
-							€</label>
-					</div>
-				</a>
-			</span>
-		{% endfor %}
+		{{ component("SearchVinyles") }}
 	</div>
 {% endblock %}

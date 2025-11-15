@@ -23,7 +23,23 @@ class VinyleRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
-    public function getAllPaginate(Request $request, ?string $search = null, ?int $pageLimit = null): PaginationInterface
+    public function getAll(?string $search = null): array
+    {
+        $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
+        if ($search != null) {
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.name LIKE :search OR author.name LIKE :search";
+        }
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        if ($search != null) {
+            $query->setParameter('search', '%' . $search . '%');
+        }
+
+        // parameters to template
+        return $query->getResult();
+    }
+
+    public function getAllPaginate(int $page = 1, ?string $search = null, ?int $pageLimit = null): PaginationInterface
     {
         if ($pageLimit == null) {
             $pageLimit = 25;
@@ -41,7 +57,7 @@ class VinyleRepository extends ServiceEntityRepository
 
         $pagination = $this->paginator->paginate(
             $query,
-            $request->query->getInt('page', 1),
+            $page,
             $pageLimit
         );
 

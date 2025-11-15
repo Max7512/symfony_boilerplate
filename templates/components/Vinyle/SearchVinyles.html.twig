@@ -1,0 +1,25 @@
+{% trans_default_domain "accueil" %}
+<div{{ attributes }} class="colonne-centre">
+
+    <input type="text" data-model="search" placeholder="{{ "recherche"|trans }}" class="form-control"/>
+
+    <div class="vinyles">
+        {% for vinyle in computed.vinyles %}
+            <span class="vinyle-layout">
+				<a href={{ path("vinyle", { "id": vinyle.getId() } ) }}>
+					<div class="conteneur colonne-centre">
+						<h1>{{ vinyle.getName() }}</h1>
+						<h2>{{ vinyle.getAuthor().getName() }}</h2>
+						<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
+						<label>{{ 'prix_label'|trans }}
+							{{ vinyle.getPrice() }}
+							€</label>
+					</div>
+				</a>
+			</span>
+         {% else %}
+            No vinyles found "{{ query }}"
+        {% endfor %}
+    </div>
+
+</div>
