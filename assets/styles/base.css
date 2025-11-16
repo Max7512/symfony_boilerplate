@@ -113,11 +113,9 @@ nav {
 }
 
 .vinyle-layout {
-    width: 12.6vw;
-    margin: 1vw;
+    width: 12.5vw;
+    margin: 2vw;
     margin-top: 0;
-    padding: 1vw;
-    padding-top: 0;
     display: inline-block;
 
     div {
@@ -126,8 +124,10 @@ nav {
         text-align: center;
     }
 
-    div:hover {
-        background-color: var(--secondaryBackgroundColorHover);
+    a {
+        div:hover {
+            background-color: var(--secondaryBackgroundColorHover);
+        }
     }
 
     img {

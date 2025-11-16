@@ -6,25 +6,5 @@
 {% endblock %}
 
 {% block body %}
-    <div class="panier colonne-centre">
-        <h1>{{ 'titre'|trans }}</h1>
-
-        {% if total <= 0 %}
-            <p>{{ 'panier.vide'|trans }}</p>
-        {% else %}
-            {% for panierItem in panier %}
-                <div class="vinyle-layout conteneur colonne-centre">
-                    <h1>{{ panierItem.getVinyle().getName() }}</h1>
-                    <h2>{{ panierItem.getVinyle().getAuthor().getName() }}</h2>
-                    <img src="{{ panierItem.getVinyle().getImage().getUrl() }}" alt="{{ panierItem.getVinyle().getName() }}">
-                    <p>{{ "vinyle.quantite"|trans }} : {{ panierItem.getQuantity() }}</p>
-                    <p>{{ "vinyle.prix"|trans }} : {{ panierItem.getQuantity() * panierItem.getVinyle().getPrice() }} €</p>
-                </div>
-            {% endfor %}
-
-            <p>{{ 'panier.total'|trans }} : {{ total }} €</p>
-
-            <button>{{ 'panier.payer'|trans }}</button>
-        {% endif %}
-    </div>
+    {{ component("Panier", { user: app.user }) }}
 {% endblock %}

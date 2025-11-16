@@ -21,7 +21,7 @@ class SearchVinyles
     public int $page = 1;
 
     #[LiveProp(writable: true)]
-    public int $pageLimit = 25;
+    public int $pageLimit = 30;
 
     #[LiveProp]
     public int $pageCount = 1;

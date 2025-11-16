@@ -1,6 +1,6 @@
 .compte {
     .modifier-compte {
-        width: 30rem;
+        width: 30vw;
         height: 25rem;
 
         div {
@@ -42,7 +42,7 @@
     }
 
     .adresses-scroll {
-        width: 30rem;
+        width: 30vw;
         height: 13.5rem;
     }
 }

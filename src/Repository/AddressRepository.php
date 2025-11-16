@@ -16,28 +16,14 @@ class AddressRepository extends ServiceEntityRepository
         parent::__construct($registry, Address::class);
     }
 
-    //    /**
-    //     * @return Address[] Returns an array of Address objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getUserAdresses(int $userId): array
+    {
+        $dql = "SELECT adresse FROM App\Entity\Address adresse JOIN adresse.user user WHERE user.id = :userId";
 
-    //    public function findOneBySomeField($value): ?Address
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        $query->setParameter('userId', $userId);
+
+        return $query->getResult();
+    }
 }

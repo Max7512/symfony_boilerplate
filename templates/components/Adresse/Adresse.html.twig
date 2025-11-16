@@ -1,0 +1,22 @@
+{% trans_default_domain "compte" %}
+<div class="colonne-centre adresses">
+	<h1>{{ "adresses"|trans }}</h1>
+	<div class="adresses-scroll">
+		<div class="adresses-layout">
+			{% for adresse in computed.adresses %}
+				<div class="adresse ligne-centre">
+					<div class="adresse-info colonne-centre">
+						<p>{{ adresse.country }}</p>
+						<p>{{ adresse.city }}</p>
+						<p>{{ adresse.postalCode }}</p>
+						<p>{{ adresse.street }}</p>
+					</div>
+					<div class="colonne-centre">
+						<button class="bouton-rouge" data-action="live#action" data-live-action-param="deleteAdresse" data-live-id-param={{ adresse.getId() }}><img src="{{ asset("images/ic_delete.png") }}"></button>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<button class="bouton-vert ligne-centre"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
+</div>

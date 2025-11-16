@@ -6,8 +6,8 @@
 	{{ 'titre'|trans }}
 {% endblock %}
 {% block body %}
-	<div class="compte colonne-centre conteneur">
-		<div class="ligne-centre">
+	<div class="compte colonne-centre">
+		<div class="conteneur ligne-centre">
 			{{ form_start(accountEditForm) }}
 			<h1>{{ 'formulaire.titre'|trans }}</h1>
 			{{ form_errors(accountEditForm) }}
@@ -22,13 +22,7 @@
         	}) }}
 			<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
 			{{ form_end(accountEditForm) }}
-			<div class="colonne-centre adresses">
-				<h1>{{ "adresses"|trans }}</h1>
-				<div class="adresses-scroll">
-					{% include "layout/adresseLayout.html.twig" %}
-				</div>
-				<button class="bouton-vert ligne-centre"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
-			</div>
+			{{ component("Adresse", { user: app.user }) }}
 		</div>
 
 		<a href={{ path("deconnexion") }} class="ligne-centre bouton-rouge"><img src="{{ asset("images/ic_deconnexion.png") }}">{{ 'lien_deconnexion'|trans }}</a>
