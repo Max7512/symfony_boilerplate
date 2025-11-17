@@ -1,36 +1,50 @@
 {% trans_default_domain "base" %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{{ "titre"|trans }}{% endblock %}</title>
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				{{ "titre"|trans }}
+			{% endblock %}
+		</title>
+		{% block stylesheets %}{% endblock %}
 
-        {% block head %}
-            <link rel="icon" href="{{ asset("images/ic_vinydeal.png") }}">
-        {% endblock %}
+		{% block head %}
+			<link rel="icon" href="{{ asset("images/ic_vinydeal.png") }}">
+		{% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        <nav>
-            <a href={{ path("accueil") }}>{{ "nav.accueil"|trans }}</a>
-            {% if app.user %}<a href={{ path("panier") }}>{{ "nav.panier"|trans }}</a>{% endif %}
-            {% if app.user %}<a href={{ path("compte") }}>{{ "nav.compte"|trans }}</a>{% endif %}
-            {% if not app.user %}<a href={{ path("connexion") }}>{{ "nav.connexion"|trans }}</a>{% endif %}
-            {% if not app.user %}<a href={{ path("inscription") }}>{{ "nav.inscription"|trans }}</a>{% endif %}
-            <span>
-                <img src="{{ asset("images/" ~ app.locale ~ ".jpg") }}" alt="{{ app.locale|upper }}">
-                <select id="localeSelect">
-                    {% for locale in locales %}
-                        <option value="{{ locale }}" {% if locale == app.locale %}selected{% endif %}>{{ locale|upper }}</option>
-                    {% endfor %}
-                </select>
-            </span>
-        </nav>
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+		<nav>
+			<a href={{ path("accueil") }}>{{ "nav.accueil"|trans }}</a>
+			{% if app.user %}
+				<a href={{ path("panier") }}>{{ "nav.panier"|trans }}</a>
+			{% endif %}
+			{% if app.user %}
+				<a href={{ path("compte") }}>{{ "nav.compte"|trans }}</a>
+			{% endif %}
+			{% if not app.user %}
+				<a href={{ path("connexion") }}>{{ "nav.connexion"|trans }}</a>
+			{% endif %}
+			{% if not app.user %}
+				<a href={{ path("inscription") }}>{{ "nav.inscription"|trans }}</a>
+			{% endif %}
+			<span>
+				<img src="{{ asset("images/" ~ app.locale ~ ".jpg") }}" alt="{{ app.locale|upper }}">
+				<select id="localeSelect">
+					{% for locale in locales %}
+						<option value="{{ locale }}" {% if locale == app.locale %} selected {% endif %}>{{ locale|upper }}</option>
+					{% endfor %}
+				</select>
+			</span>
+		</nav>
+		<div class="background-grad"></div>
+		{% block body %}{% endblock %}
+	</body>
 </html>

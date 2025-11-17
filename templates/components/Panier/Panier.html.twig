@@ -3,36 +3,29 @@
 	<h1>{{ 'titre'|trans }}</h1>
 	<div class="vinyles">
 
-		{% for panierItem in computed.panierItems %}
-			<span class="vinyle-layout">
-				<div class="conteneur colonne-centre">
-					<h1>{{ panierItem.getVinyle().getName() }}</h1>
-					<h2>{{ panierItem.getVinyle().getAuthor().getName() }}</h2>
-					<img src="{{ panierItem.getVinyle().getImage().getUrl() }}" alt="{{ panierItem.getVinyle().getName() }}">
-					<p>{{ "vinyle.quantite"|trans }}
-						:
-						{{ panierItem.getQuantity() }}</p>
-					<p>{{ "vinyle.prix"|trans }}
-						:
-						{{ panierItem.getQuantity() * panierItem.getVinyle().getPrice() }}
-						€</p>
-				</div>
-			</span>
+		{% for panierItem in computed.panier %}
+			{{ component("PanierItem", { panierItem }) }}
 		{% else %}
 			<div class="colonne-centre" style="width: 100%;">
-				{{ "pas_trouve"|trans }}
+				{{ "panier_vide"|trans }}
 			</div>
 		{% endfor %}
 
 	</div>
 
 	{% if computed.panierItemsCount > 0 %}
-		<p>{{ 'panier.total'|trans }}
+		<p>{{ 'total'|trans }}
 			:
 			{{ computed.total }}
 			€</p>
 
-		<button>{{ 'panier.payer'|trans }}</button>
+		{% if computed.panierHorsStock %}
+			<p class="rouge">
+				{{ 'quantite_insuffisante'|trans }}
+			</p>
+		{% endif %}
+
+		<button data-action="live#action" data-live-action-param="payer">{{ 'payer'|trans }}</button>
 	{% endif %}
 
 </div>

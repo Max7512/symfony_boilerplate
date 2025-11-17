@@ -1,8 +1,8 @@
 titre: Panier
-panier:
-    vide: Le panier est vide
-    payer: Payer
-    total: Total
+panier_vide: Le panier est vide
+payer: Payer
+total: Total
+quantite_insuffisante: Certains vinyles ne sont plus en stock pour le moment, merci d'attendre ou de réduire les quantités en rouge.  
 vinyle:
     quantite: Quantité
-    prix: Prix
+    prix: Prix  

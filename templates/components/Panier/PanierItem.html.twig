@@ -1,0 +1,16 @@
+{% trans_default_domain "panier" %}
+<span {{ attributes }} class="vinyle-layout">
+	<div class="conteneur colonne-centre">
+		<h1>{{ this.panierItem.vinyle.name }}</h1>
+		<h2>{{ this.panierItem.vinyle.author.name }}</h2>
+		<img src="{{ this.panierItem.vinyle.image.url }}" alt="{{ this.panierItem.vinyle.name }}">
+		<span class="ligne-centre">{{ "vinyle.quantite"|trans }}
+			:
+			<input {% if this.horsStock %}class="rouge"{% endif %} type="number" min="1" data-model="min_value(1)|panierItem.quantity">
+		</span>
+		<p>{{ "vinyle.prix"|trans }}
+			:
+			{{ this.panierItem.quantity * this.panierItem.vinyle.price }}
+			€</p>
+	</div>
+</span>

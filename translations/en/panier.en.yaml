@@ -1,8 +1,8 @@
 titre: Cart
-panier:
-    vide: Cart is empty
-    payer: Pay
-    total: Total
+panier_vide: Cart is empty
+payer: Pay
+total: Total
+quantite_insuffisante: Some vinyls are not in stock for the moment, please wait or reduce the red colored quantity.
 vinyle:
     quantite: Quantity
     prix: Price
