@@ -17,8 +17,12 @@ class GenreFixtures extends Fixture
             $parentGenre->setName($genre);
             $manager->persist($parentGenre);
             $this->genreCreated[$genre] = $parentGenre;
+        }
+
+        foreach ($this::data as $genre => $children) {
             $this->loadChildren($manager, $parentGenre, $children);
         }
+
         $manager->flush();
     }
 

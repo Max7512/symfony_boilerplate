@@ -13,6 +13,8 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use App\Entity\PanierItem as EntityPanierItem;
+use App\Repository\AddressRepository;
+use App\Twig\Components\Adresse\Adresse;
 use App\Util\OrderStatus;
 use DateTimeImmutable;
 use Exception;
@@ -32,11 +34,19 @@ class Panier extends AbstractController
     /** @var EntityPanierItem[] */
     public array $panier = [];
 
-    public function __construct(private PanierItemRepository $panierItemRepository, private EntityManagerInterface $entityManager) {}
+    #[LiveProp(writable: true)]
+    public ?int $adresseId = null;
+
+    public function __construct(private PanierItemRepository $panierItemRepository, private AddressRepository $addressRepository, private EntityManagerInterface $entityManager) {}
 
     public function getPanier(): array
     {
         return $this->panier = $this->panierItemRepository->getUserPanier($this->user->getId());
+    }
+
+    public function getAdresses(): array
+    {
+        return $this->addressRepository->getUserAdresses($this->user->getId());
     }
 
     public function getPanierItemsCount(): int
@@ -68,7 +78,7 @@ class Panier extends AbstractController
             $commande->setStatus(OrderStatus::IN_PREPARATION);
             $commande->setCreatedAt(new DateTimeImmutable());
             $commande->setReference(ByteString::fromRandom(32)->toString());
-            $commande->setAddress($this->user->getAddress()[mt_rand(0, count($this->user->getAddress()) - 1)]);
+            $commande->setAddress($this->addressRepository->find($this->adresseId));
 
             foreach ($panier as $panierItem) {
                 $vinyle = $panierItem->getVinyle();

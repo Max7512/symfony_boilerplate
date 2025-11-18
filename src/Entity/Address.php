@@ -37,6 +37,9 @@ class Address
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?bool $deleted = null;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -133,6 +136,18 @@ class Address
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(bool $deleted): static
+    {
+        $this->deleted = $deleted;
 
         return $this;
     }

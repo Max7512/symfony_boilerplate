@@ -48,6 +48,7 @@ class UserFixtures extends Fixture
                 $address->setCity($this::cities[array_rand($this::cities)]);
                 $address->setPostalCode($this::postalCodes[array_rand($this::postalCodes)]);
                 $address->setCountry($this::countries[array_rand($this::countries)]);
+                $address->setDeleted(false);
 
                 $user->addAddress($address);
 

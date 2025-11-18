@@ -25,6 +25,12 @@
 			</p>
 		{% endif %}
 
+		<select data-model="adresseId">
+			{% for adresse in computed.adresses %}
+				<option value="{{ adresse.id }}">{{ adresse.country }}, {{ adresse.city }}, {{ adresse.postalCode }}, {{ adresse.street }}</option>
+			{% endfor %}
+		</select>
+
 		<button data-action="live#action" data-live-action-param="payer">{{ 'payer'|trans }}</button>
 	{% endif %}
 

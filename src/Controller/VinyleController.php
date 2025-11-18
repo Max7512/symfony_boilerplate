@@ -52,7 +52,7 @@ class VinyleController extends BaseController
                 $entityManager->persist($panierItem);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('accueil');
             }
         }
 

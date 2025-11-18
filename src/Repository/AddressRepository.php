@@ -18,7 +18,7 @@ class AddressRepository extends ServiceEntityRepository
 
     public function getUserAdresses(int $userId): array
     {
-        $dql = "SELECT adresse FROM App\Entity\Address adresse JOIN adresse.user user WHERE user.id = :userId";
+        $dql = "SELECT adresse FROM App\Entity\Address adresse JOIN adresse.user user WHERE user.id = :userId AND adresse.deleted = 0";
 
         $query = $this->getEntityManager()->createQuery($dql);
 

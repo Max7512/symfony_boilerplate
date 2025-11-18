@@ -1,0 +1,11 @@
+<div {{ attributes }} class="adresse ligne-centre">
+	<div class="adresse-info colonne-centre">
+		<p>{{ this.adresse.country }}</p>
+		<p>{{ this.adresse.city }}</p>
+		<p>{{ this.adresse.postalCode }}</p>
+		<p>{{ this.adresse.street }}</p>
+	</div>
+	<div class="colonne-centre">
+		<button class="bouton-rouge" data-action="live#action" data-live-action-param="deleteAddress"><img src="{{ asset("images/ic_delete.png") }}"></button>
+	</div>
+</div>
