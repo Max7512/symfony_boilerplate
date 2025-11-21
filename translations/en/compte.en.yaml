@@ -8,3 +8,8 @@ formulaire:
     nom_label: "Last name"
 adresses: My addresses
 ajouter_adresse: Add address
+commandes: My orders
+IN_PREPARATION: "In preparation"
+SENT: "Sent"
+DELIVERED: "Delivered"
+CANCELLED: "Cancelled"

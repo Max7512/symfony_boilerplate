@@ -7,22 +7,25 @@
 {% endblock %}
 {% block body %}
 	<div class="compte colonne-centre">
-		<div class="conteneur ligne-centre">
-			{{ form_start(accountEditForm) }}
-			<h1>{{ 'formulaire.titre'|trans }}</h1>
-			{{ form_errors(accountEditForm) }}
-			{{ form_row(accountEditForm.first_name, {
+		<div class="conteneur colonne-centre">
+			<div class="ligne-centre">
+				{{ form_start(accountEditForm) }}
+				<h1>{{ 'formulaire.titre'|trans }}</h1>
+				{{ form_errors(accountEditForm) }}
+				{{ form_row(accountEditForm.first_name, {
 			label: "formulaire.prenom_label"|trans
 			}) }}
-			{{ form_row(accountEditForm.last_name, {
+				{{ form_row(accountEditForm.last_name, {
 			label: "formulaire.nom_label"|trans
 			}) }}
-			{{ form_row(accountEditForm.plainPassword, {
+				{{ form_row(accountEditForm.plainPassword, {
             label: 'formulaire.mot_de_passe_label'|trans
         	}) }}
-			<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
-			{{ form_end(accountEditForm) }}
-			{{ component("Adresse", { user: app.user }) }}
+				<button type="submit" class="btn">{{ 'formulaire.bouton_submit'|trans }}</button>
+				{{ form_end(accountEditForm) }}
+				{{ component("Adresse", { user: app.user }) }}
+			</div>
+			{{ component("Commande", { user: app.user }) }}
 		</div>
 
 		<a href={{ path("deconnexion") }} class="ligne-centre bouton-rouge"><img src="{{ asset("images/ic_deconnexion.png") }}">{{ 'lien_deconnexion'|trans }}</a>

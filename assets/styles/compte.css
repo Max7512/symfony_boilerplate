@@ -39,10 +39,77 @@
 
     .adresses {
         height: 25rem;
+
+        .scroll {
+            width: 30vw;
+            height: 13.5rem;
+        }
     }
 
-    .adresses-scroll {
-        width: 30vw;
-        height: 13.5rem;
+    .commandes {
+        .scroll {
+            width: 50vw;
+            height: 13.5rem;
+        }
+    }
+}
+
+.adresse-info {
+    align-items: flex-start;
+}
+
+.adresse {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--secondaryBackgroundColor);
+
+    p {
+        margin: 0;
+    }
+
+    button {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.5rem;
+        margin: 0.25rem;
+        border-radius: 0.5rem;
+        border: none;
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+.commande {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--secondaryBackgroundColor);
+    height: 10rem;
+
+    p {
+        margin: 0.25rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .adresse-info {
+        max-height: 100%;
+
+        p {
+            width: 15rem;
+        }
+    }
+
+    .commande-info {
+        max-height: 100%;
+        align-items: flex-end;
+
+        p {
+            width: 15rem;
+        }
     }
 }

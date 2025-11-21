@@ -1,0 +1,15 @@
+{% trans_default_domain "compte" %}
+<div class="commande ligne-centre">
+	<div class="adresse-info colonne-centre">
+		<p>{{ this.commande.address.country }}</p>
+		<p>{{ this.commande.address.city }}</p>
+		<p>{{ this.commande.address.postalCode }}</p>
+		<p>{{ this.commande.address.street }}</p>
+	</div>
+	<div class="commande-info colonne-centre">
+		<p>Ref : {{ this.commande.reference }}</p>
+		<p>{{ this.commande.createdAt | date("d/m/Y H:i:s") }}</p>
+		<p>{{ this.total }} €</p>
+		<p>{{ this.commande.status.name | trans }}</p>
+	</div>
+</div>

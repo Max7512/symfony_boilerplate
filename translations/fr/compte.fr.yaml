@@ -8,3 +8,8 @@ formulaire:
     nom_label: "Nom"
 adresses: Mes adresses
 ajouter_adresse: Ajouter une adresse
+commandes: Mes commandes
+IN_PREPARATION: "En préparation"
+SENT: "Expédiée"
+DELIVERED: "Livrée"
+CANCELLED: "Annulée"

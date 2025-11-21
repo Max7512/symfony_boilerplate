@@ -1,13 +1,13 @@
 {% trans_default_domain "compte" %}
 <div {{ attributes }} class="colonne-centre adresses">
 	<h1>{{ "adresses"|trans }}</h1>
-	<div class="adresses-scroll">
-		<div class="adresses-layout">
+	<div class="scroll">
+		<div class="scroll-content">
 			{% for adresse in computed.adresses %}
 				{{ component("AdresseItem", { adresse }) }}
 			{% endfor %}
 		</div>
 	</div>
 	<button class="bouton-vert ligne-centre" data-live-action="live#emit" data-live-event-param="modal-open"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
-	{{ component("Modal", { form: this.form }) }}
+	{# {{ component("Modal", { form: this.form }) }} #}
 </div>
