@@ -8,6 +8,14 @@
 			{% endfor %}
 		</div>
 	</div>
-	<button class="bouton-vert ligne-centre" data-live-action="live#emit" data-live-event-param="modal-open"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
-	{# {{ component("Modal", { form: this.form }) }} #}
+	<button class="bouton-vert ligne-centre" data-action="live#emit" data-live-event-param="modal-open"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_adresse"|trans }}</button>
+	{% component BootstrapModal with {id: 'new-category-modal'} %}
+        {% block modal_header %}
+            <h2>{{ "adresse.nouvelle_adresse" | trans }}</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{{ "adresse.fermer" | trans}}</button>
+        {% endblock %}
+        {% block modal_body %}
+            {{ component("AdresseForm", { user: app.user })}}
+        {% endblock %}
+    {% endcomponent %}
 </div>
