@@ -8,6 +8,12 @@ formulaire:
     nom_label: "Last name"
 adresses: My addresses
 ajouter_adresse: Add address
+adresseForm:
+    pays: Country
+    ville: City
+    code_postal: Postal code
+    rue: Street
+    ajouter: Add
 commandes: My orders
 IN_PREPARATION: "In preparation"
 SENT: "Sent"
