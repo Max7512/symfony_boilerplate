@@ -1,0 +1,6 @@
+titre: Dashboard
+commandes: Orders
+IN_PREPARATION: "In preparation"
+SENT: "Sent"
+DELIVERED: "Delivered"
+CANCELLED: "Cancelled"

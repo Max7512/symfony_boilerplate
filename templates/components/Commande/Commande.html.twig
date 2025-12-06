@@ -1,10 +1,8 @@
-{% trans_default_domain "compte" %}
 <div class="colonne-centre commandes">
-	<h1>{{ "commandes"|trans }}</h1>
 	<div class="scroll">
 		<div class="scroll-content">
 			{% for commande in this.commandes %}
-				{{ component("CommandeItem", { commande }) }}
+				{{ component("CommandeItem", { commande, dashboard: this.dashboard, statut: commande.status.value }) }}
 			{% endfor %}
 		</div>
 	</div>

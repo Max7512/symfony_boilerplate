@@ -1,5 +1,5 @@
 {% trans_default_domain "compte" %}
-<div class="commande ligne-centre">
+<div {{ attributes }} class="commande ligne-centre">
 	<div class="adresse-info colonne-centre">
 		<p>{{ this.commande.address.country }}</p>
 		<p>{{ this.commande.address.city }}</p>
@@ -7,9 +7,19 @@
 		<p>{{ this.commande.address.street }}</p>
 	</div>
 	<div class="commande-info colonne-centre">
-		<p>Ref : {{ this.commande.reference }}</p>
+		<p>Ref :
+			{{ this.commande.reference }}</p>
 		<p>{{ this.commande.createdAt | date("d/m/Y H:i:s") }}</p>
-		<p>{{ this.total }} €</p>
-		<p>{{ this.commande.status.name | trans }}</p>
+		<p>{{ this.total }}
+			€</p>
+		{% if this.dashboard %}
+			<select data-model="statut" data-action="live#action" data-live-action-param="save">
+				{% for status in this.statuses %}
+					<option value="{{ status.value }}" {% if status.name == this.commande.status.name %} selected {% endif %}>{{ status.name | trans }}</option>
+				{% endfor %}
+			</select>
+		{% else %}
+			<p>{{ this.commande.status.name | trans }}</p>
+		{% endif %}
 	</div>
 </div>

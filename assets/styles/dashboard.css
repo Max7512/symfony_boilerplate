@@ -1,0 +1,40 @@
+.dashboard {
+    .commandes {
+        .scroll {
+            width: 50vw;
+            height: 27rem;
+        }
+    }
+}
+
+.commande {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--secondaryBackgroundColor);
+    height: 10rem;
+
+    p {
+        margin: 0.25rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .adresse-info {
+        max-height: 100%;
+
+        p {
+            width: 15rem;
+        }
+    }
+
+    .commande-info {
+        max-height: 100%;
+        align-items: flex-end;
+
+        p {
+            width: 15rem;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain "dashboard" %}
+{% block title %}
+	{{ parent() }}
+	|
+	{{ "titre"|trans }}
+{% endblock %}
+
+{% block body %}
+	<div class="conteneur colonne-centre dashboard">
+        <h1>{{ "commandes"|trans }}</h1>
+		{{ component("Commande", { dashboard: true }) }}
+	</div>
+{% endblock %}

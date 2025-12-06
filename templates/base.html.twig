@@ -25,14 +25,12 @@
 			<a href={{ path("accueil") }}>{{ "nav.accueil"|trans }}</a>
 			{% if app.user %}
 				<a href={{ path("panier") }}>{{ "nav.panier"|trans }}</a>
-			{% endif %}
-			{% if app.user %}
 				<a href={{ path("compte") }}>{{ "nav.compte"|trans }}</a>
-			{% endif %}
-			{% if not app.user %}
+				{% if "ROLE_ADMIN" in app.user.getRoles() %}
+					<a href={{ path("dashboard") }}>{{ "nav.dashboard"|trans }}</a>
+				{% endif %}
+			{% else %}
 				<a href={{ path("connexion") }}>{{ "nav.connexion"|trans }}</a>
-			{% endif %}
-			{% if not app.user %}
 				<a href={{ path("inscription") }}>{{ "nav.inscription"|trans }}</a>
 			{% endif %}
 			<span>

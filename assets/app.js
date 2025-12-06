@@ -11,6 +11,7 @@ import './styles/compte.css';
 import './styles/connexion-inscription.css';
 import './styles/panier.css';
 import './styles/vinyle.css';
+import './styles/dashboard.css';
 
 const localeSelect = document.getElementById("localeSelect")
 
