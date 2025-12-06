@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components\Vinyle;
+namespace App\Twig\Components\SearchVinyles;
 
 use App\Repository\VinyleRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -9,7 +9,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent('SearchVinyles', template: 'components/Vinyle/SearchVinyles.html.twig')]
+#[AsLiveComponent('SearchVinyles', template: 'components/SearchVinyles/SearchVinyles.html.twig')]
 class SearchVinyles
 {
     use DefaultActionTrait;

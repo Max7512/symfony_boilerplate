@@ -4,3 +4,5 @@ formulaire:
     bouton_submit: "Add to cart"
     quantite: "Quantity"
     connexion: "You have to log in to add to cart"
+supprimer: "Delete"
+enregistrer: "Save"

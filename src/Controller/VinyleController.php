@@ -28,6 +28,11 @@ class VinyleController extends BaseController
     public function vinyle(string $id, Request $request, EntityManagerInterface $entityManager): Response
     {
         $vinyle = $this->vinyleRepository->find($id);
+
+        if (!$vinyle || $vinyle->isDeleted()) {
+            return $this->redirectToRoute('accueil');
+        }
+
         $user = $this->getUser();
 
         $form = null;

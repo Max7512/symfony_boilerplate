@@ -27,7 +27,9 @@ class VinyleRepository extends ServiceEntityRepository
     {
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
-            $dql .= " JOIN vinyle.author as author WHERE vinyle.name LIKE :search OR author.name LIKE :search";
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false AND vinyle.name LIKE :search OR author.name LIKE :search";
+        } else {
+            $dql .= " WHERE vinyle.deleted = false";
         }
         $query = $this->getEntityManager()->createQuery($dql);
 
@@ -43,7 +45,9 @@ class VinyleRepository extends ServiceEntityRepository
     {
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
-            $dql .= " JOIN vinyle.author as author WHERE vinyle.name LIKE :search OR author.name LIKE :search";
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false vinyle.name LIKE :search OR author.name LIKE :search";
+        } else {
+            $dql .= " WHERE vinyle.deleted = false";
         }
         $query = $this->getEntityManager()->createQuery($dql);
 

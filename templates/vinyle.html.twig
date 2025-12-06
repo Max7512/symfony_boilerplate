@@ -9,15 +9,7 @@
 
 {% block body %}
 	<section class="vinyle-section">
-		<article class="vinyle-article conteneur colonne-centre">
-			<h1>{{ vinyle.getName() }}</h1>
-			<h2>{{ vinyle.getAuthor().getName() }}</h2>
-			<img src="{{ vinyle.getImage().getUrl() }}" alt="{{ vinyle.getName() }}">
-			<label>{{ 'prix_label'|trans }}
-				{{ vinyle.getPrice() }}
-				€</label>
-			<p>{{ vinyle.getDescription() }}</p>
-		</article>
+		{{ component("Vinyle", { vinyle }) }}
 
 		<article class="vinyle-panier conteneur colonne-centre">
 			{% if app.user %}

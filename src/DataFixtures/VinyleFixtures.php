@@ -22,6 +22,7 @@ class VinyleFixtures extends Fixture implements DependentFixtureInterface
             foreach ($albums as $title => $info) {
                 $vinyle = new Vinyle();
                 $image = new Image();
+                $vinyle->setDeleted(false);
                 $vinyle->setAuthor($author);
                 $vinyle->setName($title);
                 $image->setUrl($info["image"]);

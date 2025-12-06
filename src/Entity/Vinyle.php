@@ -7,7 +7,6 @@ use App\Util\VinyleStatus;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Exception;
 
 #[ORM\Entity(repositoryClass: VinyleRepository::class)]
 class Vinyle
@@ -57,6 +56,9 @@ class Vinyle
      */
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'vinyles')]
     private Collection $genres;
+
+    #[ORM\Column]
+    private ?bool $deleted = null;
 
     public function __construct()
     {
@@ -242,6 +244,18 @@ class Vinyle
     public function removeGenre(Genre $genre): static
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(bool $deleted): static
+    {
+        $this->deleted = $deleted;
 
         return $this;
     }

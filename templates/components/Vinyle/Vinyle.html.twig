@@ -1,0 +1,26 @@
+{% trans_default_domain "vinyle" %}
+<article {{ attributes }} class="vinyle-article conteneur colonne-centre">
+	{% if computed.isAdmin %}
+		<input type="text" data-model="vinyle.name" value="{{ this.vinyle.getName() }}">
+		<h2>{{ this.vinyle.getAuthor().getName() }}</h2>
+		<img src="{{ this.vinyle.getImage().getUrl() }}" alt="{{ this.vinyle.getName() }}">
+		<label>{{ 'prix_label'|trans }}
+			<input type="number" data-model="vinyle.price" value="{{ this.vinyle.getPrice() }}">
+			€
+        </label>
+		<textarea data-model="vinyle.description" value="{{ this.vinyle.getDescription() }}"></textarea>
+        <div class="ligne-centre">
+            <button data-action="live#action" data-live-action-param="deleteVinyle" class="bouton-rouge">{{ "supprimer"|trans }}</button>
+            <button data-action="live#action" data-live-action-param="saveVinyle" class="bouton-vert">{{ "enregistrer"|trans }}</button>
+        </div>
+	{% else %}
+		<h1>{{ this.vinyle.getName() }}</h1>
+		<h2>{{ this.vinyle.getAuthor().getName() }}</h2>
+		<img src="{{ this.vinyle.getImage().getUrl() }}" alt="{{ this.vinyle.getName() }}">
+		<label>{{ 'prix_label'|trans }}
+			{{ this.vinyle.getPrice() }}
+			€
+        </label>
+		<p>{{ this.vinyle.getDescription() }}</p>
+	{% endif %}
+</article>
