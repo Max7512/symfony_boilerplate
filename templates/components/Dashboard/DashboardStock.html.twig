@@ -1,0 +1,18 @@
+{% trans_default_domain "dashboard" %}
+<div class="dashboard-card">
+    <h2>{{ 'stock.titre'|trans }}</h2>
+    <ul>
+        <li>{{ 'stock.en_stock'|trans }}: {{ this.counts.in_stock }}</li>
+        <li>{{ 'stock.rupture_de_stock'|trans }}: {{ this.counts.out_of_stock }}</li>
+        <li>{{ 'stock.precommande'|trans }}: {{ this.counts.preorder }}</li>
+    </ul>
+
+    {% if this.outOfStockVinyles|length > 0 %}
+        <h3>{{ 'stock.vinyles_en_rupture'|trans }}</h3>
+        <ul>
+            {% for vinyle in this.outOfStockVinyles %}
+                <li>{{ vinyle.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

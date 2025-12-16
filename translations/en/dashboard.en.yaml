@@ -4,3 +4,13 @@ IN_PREPARATION: "In preparation"
 SENT: "Sent"
 DELIVERED: "Delivered"
 CANCELLED: "Cancelled"
+ventes:
+    titre: Sales
+    mois: Month
+    revenu: Revenue
+stock:
+    titre: Stock Status
+    en_stock: In Stock
+    rupture_de_stock: Out of Stock
+    precommande: Preorder
+    vinyles_en_rupture: Out of Stock Vinyls

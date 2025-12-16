@@ -1,0 +1,20 @@
+{% trans_default_domain "dashboard" %}
+<div class="dashboard-card">
+    <h2>{{ 'ventes.titre'|trans }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'ventes.mois'|trans }}</th>
+                <th>{{ 'ventes.revenu'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in this.salesByMonth %}
+                <tr>
+                    <td>{{ sale.sales_month }}</td>
+                    <td>{{ sale.total_revenue }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

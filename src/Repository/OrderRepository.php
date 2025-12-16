@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Order;
+use App\Util\OrderStatus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,28 +17,18 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    //    /**
-    //     * @return Order[] Returns an array of Order objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('o.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getSalesByMonth(): array
+    {
+        $dql = "SELECT SUBSTRING(o.createdAt, 1, 7) as sales_month, SUM(orderItem.quantity * orderItem.productPrice) as total_revenue
+                FROM App\Entity\OrderItem orderItem
+                JOIN orderItem.Order_ o
+                WHERE o.status = :status
+                GROUP BY sales_month
+                ORDER BY sales_month DESC";
 
-    //    public function findOneBySomeField($value): ?Order
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $query = $this->getEntityManager()->createQuery($dql);
+        $query->setParameter('status', OrderStatus::DELIVERED);
+
+        return $query->getResult();
+    }
 }

@@ -4,3 +4,13 @@ IN_PREPARATION: "En préparation"
 SENT: "Expédiée"
 DELIVERED: "Livrée"
 CANCELLED: "Annulée"
+ventes:
+    titre: Ventes
+    mois: Mois
+    revenu: Revenu
+stock:
+    titre: État des Stocks
+    en_stock: En Stock
+    rupture_de_stock: En rupture de stock
+    precommande: Précommande
+    vinyles_en_rupture: Vinyles en rupture de stock

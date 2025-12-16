@@ -23,11 +23,31 @@ class VinyleRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
+    public function getVinylesStatusCounts(): array
+    {
+        $dql = "SELECT
+                    SUM(CASE WHEN vinyle.status = 'En stock' THEN 1 ELSE 0 END) as in_stock,
+                    SUM(CASE WHEN vinyle.status = 'En rupture de stock' THEN 1 ELSE 0 END) as out_of_stock,
+                    SUM(CASE WHEN vinyle.status = 'En précommande' THEN 1 ELSE 0 END) as preorder
+                FROM App\Entity\Vinyle vinyle";
+        $query = $this->getEntityManager()->createQuery($dql);
+        return $query->getSingleResult();
+    }
+
+
+    public function getOutOfStock(): array
+    {
+        $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle WHERE vinyle.status = 'En rupture de stock'";
+        $query = $this->getEntityManager()->createQuery($dql);
+        return $query->getResult();
+    }
+
+
     public function getAll(?string $search = null): array
     {
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
-            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false AND vinyle.name LIKE :search OR author.name LIKE :search";
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false AND (vinyle.name LIKE :search OR author.name LIKE :search)";
         } else {
             $dql .= " WHERE vinyle.deleted = false";
         }
@@ -37,7 +57,6 @@ class VinyleRepository extends ServiceEntityRepository
             $query->setParameter('search', '%' . $search . '%');
         }
 
-        // parameters to template
         return $query->getResult();
     }
 
@@ -45,7 +64,7 @@ class VinyleRepository extends ServiceEntityRepository
     {
         $dql = "SELECT vinyle FROM App\Entity\Vinyle vinyle";
         if ($search != null) {
-            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false vinyle.name LIKE :search OR author.name LIKE :search";
+            $dql .= " JOIN vinyle.author as author WHERE vinyle.deleted = false AND (vinyle.name LIKE :search OR author.name LIKE :search)";
         } else {
             $dql .= " WHERE vinyle.deleted = false";
         }
@@ -53,6 +72,10 @@ class VinyleRepository extends ServiceEntityRepository
 
         if ($search != null) {
             $query->setParameter('search', '%' . $search . '%');
+        }
+
+        if (!$this->paginator) {
+            throw new \LogicException('The paginator service is not available. Try running "composer require knplabs/knp-paginator-bundle"');
         }
 
         $pagination = $this->paginator->paginate(
@@ -61,32 +84,6 @@ class VinyleRepository extends ServiceEntityRepository
             $pageLimit
         );
 
-        // parameters to template
         return $pagination;
     }
-
-    //    /**
-    //     * @return Vinyle[] Returns an array of Vinyle objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('v.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Vinyle
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
