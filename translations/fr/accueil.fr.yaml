@@ -2,3 +2,13 @@ titre: Accueil
 prix_label: 'Prix :'
 recherche: Recherche
 pas_trouve: Pas de vinyles trouvés
+ajouter_vinyle: Ajouter un vinyle
+annuler: Annuler
+vinyleForm:
+    nom: Nom
+    description: Description
+    prix: Prix
+    stock: Stock
+    precommande: Précommande
+    image: Image
+    ajouter: Ajouter

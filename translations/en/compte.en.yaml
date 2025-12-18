@@ -1,5 +1,6 @@
 titre: Account
 lien_deconnexion: Sign out
+annuler: Cancel
 formulaire:
     titre: My account
     mot_de_passe_label: "Password"

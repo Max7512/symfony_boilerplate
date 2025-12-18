@@ -18,11 +18,26 @@ class Adresse
     #[LiveProp]
     public User $user;
 
+    #[LiveProp]
+    public bool $formOpen = false;
+
     public function __construct(private AddressRepository $addressRepository, private EntityManagerInterface $entityManager) {}
 
     #[LiveListener("refreshAddress")]
     public function getAdresses(): array
     {
         return $this->addressRepository->getUserAdresses($this->user->getId());
+    }
+
+    #[LiveListener("adresse-form-open")]
+    public function openForm()
+    {
+        $this->formOpen = true;
+    }
+
+    #[LiveListener("adresse-form-close")]
+    public function closeForm()
+    {
+        $this->formOpen = false;
     }
 }

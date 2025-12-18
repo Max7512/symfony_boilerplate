@@ -2,6 +2,7 @@
     .modifier-compte {
         width: 30vw;
         height: 25rem;
+        align-self: start;
 
         div {
             width: 90%;
@@ -26,17 +27,16 @@
         font-size: larger;
     }
 
-    .bouton-vert {
-        padding: 0.5rem;
-        justify-content: space-around;
-    }
-
     .adresses {
-        height: 25rem;
+        min-height: 25rem;
 
         .scroll {
             width: 30vw;
             height: 13.5rem;
+        }
+
+        button {
+            margin: 0.5rem;
         }
     }
 

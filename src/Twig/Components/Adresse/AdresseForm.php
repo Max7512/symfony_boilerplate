@@ -10,7 +10,6 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
-use Symfony\UX\LiveComponent\ValidatableComponentTrait;
 
 #[AsLiveComponent("AdresseForm", template: "components/Adresse/AdresseForm.html.twig")]
 class AdresseForm
@@ -41,8 +40,8 @@ class AdresseForm
             $entityManager->persist($this->address);
             $entityManager->flush();
 
-            $this->dispatchBrowserEvent('modal:close');
-            $this->emit('address:created');
+            $this->dispatchBrowserEvent('adresse-form-close');
+            $this->emit('adresse-form-close');
 
             $this->address = new Address();
             $this->address->setUser($this->user);

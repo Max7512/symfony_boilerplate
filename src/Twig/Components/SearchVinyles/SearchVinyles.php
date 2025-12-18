@@ -6,6 +6,7 @@ use App\Repository\VinyleRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
@@ -25,6 +26,9 @@ class SearchVinyles
 
     #[LiveProp]
     public int $pageCount = 1;
+
+    #[LiveProp]
+    public bool $formOpen = false;
 
     public function __construct(private VinyleRepository $vinyleRepository) {}
 
@@ -57,5 +61,17 @@ class SearchVinyles
 
         if ($this->page > $this->pageCount)
             $this->page = $this->pageCount;
+    }
+    
+    #[LiveListener("vinyle-form-open")]
+    public function openForm()
+    {
+        $this->formOpen = true;
+    }
+
+    #[LiveListener("vinyle-form-close")]
+    public function closeForm()
+    {
+        $this->formOpen = false;
     }
 }

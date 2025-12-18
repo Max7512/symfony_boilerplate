@@ -1,5 +1,13 @@
 {% trans_default_domain "accueil" %}
 <div{{attributes}} class="colonne-centre">
+	{% if "ROLE_ADMIN" in app.user.getRoles() %}
+		{% if not this.formOpen %}
+			<button class="bouton-vert ligne-centre" data-action="live#emit" data-live-event-param="vinyle-form-open"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_vinyle"|trans }}</button>
+		{% else %}
+			<button data-action="live#emit" data-live-event-param="vinyle-form-close">{{ "annuler"|trans }}</button>
+			{{ component("VinyleForm") }}
+		{% endif %}
+	{% endif %}
 
 	<input type="text" data-model="search" placeholder="{{ "recherche"|trans }}" class="form-control" data-action="live#action" data-live-action-param="refreshPageOptions"/>
 

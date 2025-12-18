@@ -3,6 +3,37 @@
         width: 40%;
         font-size: larger;
     }
+
+    .bouton-vert {
+        margin-bottom: 1rem;
+    }
+
+    .form {
+        div {
+            width: 50rem;
+        }
+
+        input,
+        textarea {
+            width: 50%;
+            font-size: medium;
+        }
+
+        input[type="number"] {
+            width: 10%;
+        }
+
+        img {
+            width: 25%;
+            margin-right: 13%;
+            border-radius: 0.5rem;
+        }
+
+        img:hover {
+            cursor: pointer;
+            filter: brightness(0.9);
+        }
+    }
 }
 
 .vinyles {

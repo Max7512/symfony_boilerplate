@@ -34,7 +34,7 @@ a {
     text-decoration: none;
 }
 
-input,
+input:not([type=file]),
 button,
 textarea {
     background-color: var(--primaryButtonBackgroundColor);
@@ -64,7 +64,12 @@ button:hover {
     border: solid var(--primaryButtonBackgroundColor) 3px;
 }
 
+input[type=file]:hover {
+    cursor: pointer;
+}
+
 nav {
+    z-index: 1;
     position: fixed;
     top: 0;
     width: 100%;
@@ -179,6 +184,8 @@ nav {
 }
 
 .bouton-vert {
+    padding: 0.5rem;
+    justify-content: space-around;
     color: white;
     background-color: green;
 
@@ -224,4 +231,11 @@ nav {
     left: 0;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.75);
+}
+
+.form {
+    .ligne-centre {
+        width: 100%;
+        margin: 0.5rem;
+    }
 }

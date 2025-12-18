@@ -1,8 +1,8 @@
 {% trans_default_domain "compte" %}
-<div {{ attributes }} class="colonne-centre conteneur">
-	<div>{{ "adresseForm.pays" | trans}}<input type="text" data-model="address.country"></div>
-    <div>{{ "adresseForm.ville" | trans}}<input type="text" data-model="address.city"></div>
-    <div>{{ "adresseForm.code_postal" | trans}}<input type="text" data-model="address.postalCode"></div>
-    <div>{{ "adresseForm.rue" | trans}}<input type="text" data-model="address.street"></div>
+<div {{ attributes }} class="colonne-centre form">
+	<div class="ligne-centre">{{ "adresseForm.pays" | trans}}<input type="text" data-model="address.country"></div>
+    <div class="ligne-centre">{{ "adresseForm.ville" | trans}}<input type="text" data-model="address.city"></div>
+    <div class="ligne-centre">{{ "adresseForm.code_postal" | trans}}<input type="text" data-model="address.postalCode"></div>
+    <div class="ligne-centre">{{ "adresseForm.rue" | trans}}<input type="text" data-model="address.street"></div>
     <button data-action="live#action" data-live-action-param="saveAddress">{{ "adresseForm.ajouter" | trans}}</button>
 </div>

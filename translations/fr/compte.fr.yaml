@@ -1,5 +1,6 @@
 titre: Compte
 lien_deconnexion: Se déconnecter
+annuler: Annuler
 formulaire:
     titre: Mon compte
     mot_de_passe_label: "Mot de passe"
@@ -8,7 +9,7 @@ formulaire:
     nom_label: "Nom"
 adresses: Mes adresses
 ajouter_adresse: Ajouter une adresse
-adresse:
+adresseForm:
     pays: Pays
     ville: Ville
     code_postal: Code postal
