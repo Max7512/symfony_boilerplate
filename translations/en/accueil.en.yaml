@@ -11,4 +11,5 @@ vinyleForm:
     stock: Stock
     precommande: Pre-order
     image: Image
+    chargerImage: Load image
     ajouter: Add

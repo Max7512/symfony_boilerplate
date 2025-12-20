@@ -3,6 +3,7 @@
 namespace App\Twig\Components\Vinyle;
 
 use App\Entity\Image;
+use App\Entity\User;
 use App\Entity\Vinyle;
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,13 +28,13 @@ class VinyleForm
     public ?int $authorId = null;
 
     #[LiveProp]
-    public ?UploadedFile $image = null;
-
-    #[LiveProp]
     public string $imageSrc = "/images/image_placeholder.png";
 
     #[LiveProp(writable: true)]
     public bool $precommande = false;
+
+    #[LiveProp]
+    public User $user;
 
     public function __construct(private AuthorRepository $authorRepository)
     {
@@ -42,8 +43,14 @@ class VinyleForm
 
     #[LiveAction]
     public function uploadFile(Request $request) {
-        $this->image = $request->files->get('image');
-        if ($this->image) $this->imageSrc = $this->image->getClientOriginalPath();
+        $image = $request->files->get('image');
+        if ($image && $image instanceof UploadedFile && $image->getSize()) {
+            $filePath = '/images/tmp/'.$this->user->getId();
+            $image->move('images/tmp/', $this->user->getId());
+            $this->imageSrc = $filePath;
+        } else {
+            $this->imageSrc = "/images/image_placeholder.png";
+        }
     }
 
     #[LiveAction]

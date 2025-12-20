@@ -1,10 +1,33 @@
 {% trans_default_domain "accueil" %}
 <div {{ attributes }} class="colonne-centre conteneur form">
-	<div class="ligne-centre">{{ "vinyleForm.nom" | trans}}<input type="text" data-model="vinyle.name"></div>
-    <div class="ligne-centre">{{ "vinyleForm.description" | trans}}<textarea data-model="vinyle.description"></textarea></div>
-    <div class="ligne-centre">{{ "vinyleForm.prix" | trans}}<input type="number" data-model="vinyle.price"></div>
-    <div class="ligne-centre">{{ "vinyleForm.stock" | trans}}<input type="number" data-model="vinyle.stock"></div>
-    <div class="ligne-centre">{{ "vinyleForm.precommande" | trans}}<input type="checkbox" data-model="precommande"></div>
-    <div class="ligne-centre">{{ "vinyleForm.image" | trans}}<img src={{ this.imageSrc }} onclick="document.getElementById('image').click()"><input id="image" name="image" type="file" accept="image/png, image/jpeg" data-action="live#action" data-live-action-param="files|uploadFile" hidden></div>
-    <button data-action="live#action" data-live-action-param="saveVinyle">{{ "vinyleForm.ajouter" | trans}}</button>
+	<div class="ligne-centre">
+		{{ "vinyleForm.nom" | trans}}
+		<input type="text" data-model="vinyle.name">
+	</div>
+	<div class="ligne-centre">
+		{{ "vinyleForm.description" | trans}}
+		<textarea data-model="vinyle.description"></textarea>
+	</div>
+	<div class="ligne-centre">
+		{{ "vinyleForm.prix" | trans}}
+		<input type="number" data-model="vinyle.price">
+	</div>
+	<div class="ligne-centre">
+		{{ "vinyleForm.stock" | trans}}
+		<input type="number" data-model="vinyle.stock">
+	</div>
+	<div class="ligne-centre">
+		{{ "vinyleForm.precommande" | trans}}
+		<input type="checkbox" data-model="precommande">
+	</div>
+	<div class="ligne-centre">{{ "vinyleForm.image" | trans}}
+		<div class="colonne-centre">
+			<img src={{ this.imageSrc }} onclick="document.getElementById('image').click()">
+			<input id="image" name="image" type="file" accept="image/*" hidden>
+			<button data-action="live#action" data-live-action-param="files|uploadFile">
+                {{ "vinyleForm.chargerImage" | trans}}
+            </button>
+		</div>
+	</div>
+	<button data-action="live#action" data-live-action-param="saveVinyle">{{ "vinyleForm.ajouter" | trans}}</button>
 </div>

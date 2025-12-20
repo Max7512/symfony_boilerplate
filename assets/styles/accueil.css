@@ -13,19 +13,24 @@
             width: 50rem;
         }
 
+        .colonne-centre {
+            width: auto;
+        }
+
         input,
         textarea {
             width: 50%;
             font-size: medium;
         }
 
-        input[type="number"] {
+        input[type="number"],
+        input[type="checkbox"] {
             width: 10%;
         }
 
         img {
-            width: 25%;
-            margin-right: 13%;
+            width: 15rem;
+            margin: 0.5rem;
             border-radius: 0.5rem;
         }
 
