@@ -51,127 +51,127 @@ class GenreFixtures extends Fixture
     }
 
     const data = [
-        "rock" => [
-            "grunge" => [],
-            "hard rock" => [
-                "heavy metal" => [
-                    "power metal" => [],
-                    "speed metal" => [],
+        "Rock" => [
+            "Grunge" => [],
+            "Hard Rock" => [
+                "Heavy Metal" => [
+                    "Power Metal" => [],
+                    "Speed Metal" => [],
                 ],
-                "glam rock" => [],
-                "arena rock" => [],
-                "rock" => [],
+                "Glam Rock" => [],
+                "Arena Rock" => [],
+                "Rock" => [],
             ],
-            "punk rock" => [
-                "punk" => [
-                    "hardcore punk" => [],
-                    "post-punk" => [],
-                    "garage rock" => [],
+            "Punk Rock" => [
+                "Punk" => [
+                    "Hardcore Punk" => [],
+                    "Post-Punk" => [],
+                    "Garage Rock" => [],
                 ],
-                "pop punk" => [],
-                "rock alt" => [],
+                "Pop Punk" => [],
+                "Rock Alt" => [],
             ],
-            "rock alt" => [
-                "indie rock" => [],
-                "post-rock" => [],
-                "garage rock" => [],
-                "grunge" => [],
-                "punk rock" => [],
-                "rock" => [],
+            "Rock Alt" => [
+                "Indie Rock" => [],
+                "Post-Rock" => [],
+                "Garage Rock" => [],
+                "Grunge" => [],
+                "Punk Rock" => [],
+                "Rock" => [],
             ],
-            "progressif" => [],
-            "metal" => [
-                "heavy metal" => [
-                    "thrash metal" => [],
-                    "death metal" => [],
-                    "black metal" => [],
-                    "doom metal" => [],
-                    "power metal" => [],
+            "Progressif" => [],
+            "Metal" => [
+                "Heavy Metal" => [
+                    "Thrash Metal" => [],
+                    "Death Metal" => [],
+                    "Black Metal" => [],
+                    "Doom Metal" => [],
+                    "Power Metal" => [],
                 ],
-                "nu metal" => [
-                    "rap metal" => [],
-                    "metal alt" => [],
-                    "rock" => [],
+                "Nu Metal" => [
+                    "Rap Metal" => [],
+                    "Metal Alt" => [],
+                    "Rock" => [],
                 ],
-                "metal alt" => [
-                    "nu metal" => [],
-                    "rock alt" => [],
+                "Metal Alt" => [
+                    "Nu Metal" => [],
+                    "Rock Alt" => [],
                 ],
-                "rock" => [],
+                "Rock" => [],
             ],
         ],
 
-        "pop" => [
-            "synthpop" => [],
-            "electropop" => [],
-            "dance pop" => [],
-            "pop rock" => [],
-            "indie pop" => [],
+        "Pop" => [
+            "Synthpop" => [],
+            "Electropop" => [],
+            "Dance Pop" => [],
+            "Pop Rock" => [],
+            "Indie Pop" => [],
         ],
 
-        "electro" => [
-            "techno" => [],
-            "house" => [],
-            "trance" => [],
-            "drum and bass" => [],
-            "electropop" => [],
+        "Electro" => [
+            "Techno" => [],
+            "House" => [],
+            "Trance" => [],
+            "Drum And Bass" => [],
+            "Electropop" => [],
         ],
 
-        "hip hop" => [
-            "rap" => [],
-            "trap" => [],
-            "boom bap" => [],
-            "lofi hip hop" => [],
-            "nu metal" => [],
+        "Hip Hop" => [
+            "Rap" => [],
+            "Trap" => [],
+            "Boom Bap" => [],
+            "Lofi Hip Hop" => [],
+            "Nu Metal" => [],
         ],
 
-        "jazz" => [
-            "bebop" => [],
-            "smooth jazz" => [],
-            "swing" => [],
-            "fusion" => [],
-            "blues" => [],
+        "Jazz" => [
+            "Bebop" => [],
+            "Smooth Jazz" => [],
+            "Swing" => [],
+            "Fusion" => [],
+            "Blues" => [],
         ],
 
-        "blues" => [
-            "rock" => [],
-            "jazz" => [],
-            "rhythm and blues" => [],
-            "soul" => [],
+        "Blues" => [
+            "Rock" => [],
+            "Jazz" => [],
+            "Rhythm And Blues" => [],
+            "Soul" => [],
         ],
 
-        "classique" => [
-            "baroque" => [],
-            "romantique" => [],
-            "contemporain" => [],
-            "opéra" => [],
+        "Classique" => [
+            "Baroque" => [],
+            "Romantique" => [],
+            "Contemporain" => [],
+            "Opéra" => [],
         ],
 
-        "folk" => [
-            "country" => [],
-            "bluegrass" => [],
-            "indie folk" => [],
-            "pop" => [],
-            "rock" => [],
+        "Folk" => [
+            "Country" => [],
+            "Bluegrass" => [],
+            "Indie Folk" => [],
+            "Pop" => [],
+            "Rock" => [],
         ],
 
-        "reggae" => [
-            "ska" => [],
-            "dub" => [],
-            "dancehall" => [],
+        "Reggae" => [
+            "Ska" => [],
+            "Dub" => [],
+            "Dancehall" => [],
         ],
 
-        "soul" => [
-            "blues" => [],
-            "funk" => [],
-            "r&b" => [],
-            "gospel" => [],
+        "Soul" => [
+            "Blues" => [],
+            "Funk" => [],
+            "R&B" => [],
+            "Gospel" => [],
         ],
 
-        "funk" => [
-            "soul" => [],
-            "disco" => [],
-            "hip hop" => [],
+        "Funk" => [
+            "Soul" => [],
+            "Disco" => [],
+            "Hip Hop" => [],
         ],
     ];
 }

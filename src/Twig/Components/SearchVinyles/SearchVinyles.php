@@ -2,18 +2,30 @@
 
 namespace App\Twig\Components\SearchVinyles;
 
+use App\Entity\Author;
+use App\Entity\Image;
+use App\Entity\Vinyle;
+use App\Form\VinyleFormType;
 use App\Repository\VinyleRepository;
+use App\Util\VinyleStatus;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
-use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
+use Symfony\UX\LiveComponent\ComponentToolsTrait;
+use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
 #[AsLiveComponent('SearchVinyles', template: 'components/SearchVinyles/SearchVinyles.html.twig')]
-class SearchVinyles
+class SearchVinyles extends AbstractController
 {
     use DefaultActionTrait;
+    use ComponentWithFormTrait;
+    use ComponentToolsTrait;
 
     #[LiveProp(writable: true)]
     public ?string $search = null;
@@ -30,7 +42,20 @@ class SearchVinyles
     #[LiveProp]
     public bool $formOpen = false;
 
-    public function __construct(private VinyleRepository $vinyleRepository) {}
+    #[LiveProp]
+    public ?Vinyle $vinyle = null;
+
+    #[LiveProp(writable: true)]
+    public bool $newAuthor = false;
+
+    public function __construct(
+        private VinyleRepository $vinyleRepository
+    ) {}
+
+    protected function instantiateForm(): FormInterface
+    {
+        return $this->createForm(VinyleFormType::class, $this->vinyle);
+    }
 
     public function getVinyles(): PaginationInterface
     {
@@ -40,8 +65,9 @@ class SearchVinyles
     #[LiveAction]
     public function pagePlus(): void
     {
-        if ($this->page < $this->pageCount)
+        if ($this->page < $this->pageCount) {
             $this->page++;
+        }
 
         $this->refreshPageOptions();
     }
@@ -49,29 +75,93 @@ class SearchVinyles
     #[LiveAction]
     public function pageMoins(): void
     {
-        if ($this->page > 1)
+        if ($this->page > 1) {
             $this->page--;
+        }
 
         $this->refreshPageOptions();
     }
 
     #[LiveAction]
-    public function refreshPageOptions(): void {
+    public function refreshPageOptions(): void
+    {
         $this->pageCount = ceil($this->vinyleRepository->getAllPaginate($this->page, $this->search, $this->pageLimit)->getTotalItemCount() / $this->pageLimit);
 
-        if ($this->page > $this->pageCount)
+        if ($this->page > $this->pageCount) {
             $this->page = $this->pageCount;
+        }
     }
-    
-    #[LiveListener("vinyle-form-open")]
+
+    #[LiveAction]
     public function openForm()
     {
         $this->formOpen = true;
     }
 
-    #[LiveListener("vinyle-form-close")]
+    #[LiveAction]
     public function closeForm()
     {
         $this->formOpen = false;
+        $this->newAuthor = false;
+        $this->resetForm();
+    }
+
+    #[LiveAction]
+    public function saveVinyle(EntityManagerInterface $entityManager): void
+    {
+        $form = $this->getForm();
+
+        $vinyle = new Vinyle();
+
+        $vinyle->setName($form->get('name')->getData());
+        $vinyle->setDescription($form->get('description')->getData());
+        $vinyle->setPrice($form->get('price')->getData());
+        $vinyle->setStock($form->get('stock')->getData());
+
+        foreach ($form->get('genres')->getData() as $genre) {
+            $vinyle->addGenre($genre);
+        }
+
+        if ($this->newAuthor) {
+            $author = new Author();
+            $author->setName($form->get('newAuthorName')->getData());
+            $vinyle->setAuthor($author);
+        } else {
+            $vinyle->setAuthor($form->get('author')->getData());
+        }
+
+        $precommande = $form->get('precommande')->getData();
+
+        if ($precommande) {
+            $vinyle->setStatus(VinyleStatus::PREORDER);
+        } else {
+            if ($vinyle->getStock() > 0) {
+                $vinyle->setStatus(VinyleStatus::IN_STOCK);
+            } else {
+                $vinyle->setStatus(VinyleStatus::OUT_OF_STOCK);
+            }
+        }
+
+        $imageFile = $form->get('image')->getData();
+        if ($imageFile) {
+            $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+            try {
+                $imageFile->move(
+                    "images/vinyles",
+                    $newFilename
+                );
+            } catch (FileException $e) {
+            }
+
+            $image = new Image();
+            $image->setUrl('/images/vinyles/' . $newFilename);
+            $vinyle->setImage($image);
+
+            $entityManager->persist($vinyle);
+            $entityManager->flush();
+
+            $this->closeForm();
+        }
     }
 }

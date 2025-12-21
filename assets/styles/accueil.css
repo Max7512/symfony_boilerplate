@@ -9,12 +9,17 @@
     }
 
     .form {
-        div {
+        div:not([class]) {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
             width: 50rem;
-        }
+            margin: 0.5rem;
 
-        .colonne-centre {
-            width: auto;
+            div:not(.clear-button):not(.item) {
+                width: 90%;
+            }
         }
 
         input,
@@ -24,19 +29,9 @@
         }
 
         input[type="number"],
-        input[type="checkbox"] {
+        input[type="checkbox"],
+        input#vinyle_form_price {
             width: 10%;
-        }
-
-        img {
-            width: 15rem;
-            margin: 0.5rem;
-            border-radius: 0.5rem;
-        }
-
-        img:hover {
-            cursor: pointer;
-            filter: brightness(0.9);
         }
     }
 }
@@ -55,7 +50,8 @@
         width: 12vw;
         justify-content: center;
 
-        button, input {
+        button,
+        input {
             font-size: large;
             width: 3rem;
             height: 3rem;

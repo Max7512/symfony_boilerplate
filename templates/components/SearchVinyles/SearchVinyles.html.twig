@@ -2,10 +2,30 @@
 <div{{attributes}} class="colonne-centre">
 	{% if app.user and "ROLE_ADMIN" in app.user.getRoles() %}
 		{% if not this.formOpen %}
-			<button class="bouton-vert ligne-centre" data-action="live#emit" data-live-event-param="vinyle-form-open"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_vinyle"|trans }}</button>
+			<button class="bouton-vert ligne-centre" data-action="live#action" data-live-action-param="openForm"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_vinyle"|trans }}</button>
 		{% else %}
-			<button data-action="live#emit" data-live-event-param="vinyle-form-close">{{ "annuler"|trans }}</button>
-			{{ component("VinyleForm", { user: app.user }) }}
+			<button data-action="live#action" data-live-action-param="closeForm">{{ "annuler"|trans }}</button>
+			<form class="conteneur form colonne-centre" data-action="live#action" data-live-action-param="saveVinyle">
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.stock) }}
+				{{ form_row(form.precommande) }}
+
+                {{ form_row(form.newAuthor, { 'attr': { 'data-model': 'newAuthor' } }) }}
+
+                {% if this.newAuthor %}
+                    {{ form_row(form.newAuthorName) }}
+                    <div style="display: none;">{{ form_row(form.author) }}</div>
+                {% else %}
+                    {{ form_row(form.author) }}
+					<div style="display: none;">{{ form_row(form.newAuthorName) }}</div>
+                {% endif %}
+
+                {{ form_rest(form) }}
+				
+				<button type="submit" class="bouton-vert">{{ "enregistrer"|trans }}</button>
+			</form>
 		{% endif %}
 	{% endif %}
 
