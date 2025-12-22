@@ -57,6 +57,15 @@ class UserFixtures extends Fixture
 
             $manager->persist($user);
         }
+
+        $admin = new User();
+        $admin->setFirstName("Admin");
+        $admin->setLastName("Admin");
+        $admin->setEmail("admin@truc.com");
+        $admin->setPassword("$2y$13$9uGgMHtDM55GkvNLMdCmsOjqvTzbncvbArUd0iJ3KC/7joD205WwK");
+        $admin->setRoles(["ROLE_ADMIN"]);
+        $manager->persist($admin);
+
         $manager->flush();
     }
 

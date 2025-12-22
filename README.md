@@ -1,3 +1,6 @@
+compte admin : admin@truc.com
+mot de passe : 00000000
+
 # Symfony 7.3 Boilerplate 
 
 Attention : Il vous faut PHP 8.2 pour faire fonctionner ce projet.
