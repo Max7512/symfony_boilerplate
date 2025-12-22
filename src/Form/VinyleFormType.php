@@ -40,16 +40,6 @@ class VinyleFormType extends AbstractType
             ->add('author', AuthorAutocompleteField::class, [
                 'required' => false
             ])
-            ->add('newAuthor', CheckboxType::class, [
-                'mapped' => false,
-                'required' => false,
-                'label' => 'Nouvel auteur'
-            ])
-            ->add('newAuthorName', TextType::class, [
-                'mapped' => false,
-                'required' => false,
-                'label' => 'Nom du nouvel auteur'
-            ])
             ->add('genres', GenreAutocompleteField::class)
             ->add('image', FileType::class, [
                 'label' => 'Image (JPG, PNG file)',

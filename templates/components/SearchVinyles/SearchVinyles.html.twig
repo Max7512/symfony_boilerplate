@@ -5,26 +5,40 @@
 			<button class="bouton-vert ligne-centre" data-action="live#action" data-live-action-param="openForm"><img src="{{ asset("images/ic_add.png") }}">{{ "ajouter_vinyle"|trans }}</button>
 		{% else %}
 			<button data-action="live#action" data-live-action-param="closeForm">{{ "annuler"|trans }}</button>
-			<form class="conteneur form colonne-centre" data-action="live#action" data-live-action-param="saveVinyle">
-                {{ form_row(form.name) }}
-                {{ form_row(form.description) }}
-                {{ form_row(form.price) }}
-                {{ form_row(form.stock) }}
-				{{ form_row(form.precommande) }}
+			<form class="conteneur form colonne-centre">
+				{{ form_row(form.name, {
+					label: "vinyleForm.nom"|trans
+				}) }}
+				{{ form_row(form.description, {
+					label: "vinyleForm.description"|trans
+				}) }}
+				{{ form_row(form.price, {
+					label: "vinyleForm.prix"|trans
+				}) }}
+				{{ form_row(form.stock, {
+					label: "vinyleForm.stock"|trans
+				}) }}
+				{{ form_row(form.precommande, {
+					label: "vinyleForm.precommande"|trans
+				}) }}
+				{{ form_row(form.author, {
+					label: "vinyleForm.auteur"|trans
+				}) }}
 
-                {{ form_row(form.newAuthor, { 'attr': { 'data-model': 'newAuthor' } }) }}
+				<div>
+					<label for="newAuthor">{{ "vinyleForm.nouvel_auteur"|trans }}</label>
+					<input type="text" id="newAuthor" data-model="newAuthor"/>
+					<button data-action="live#action" data-live-action-param="addNewAuthor">{{ "vinyleForm.ajouter"|trans }}</button>
+				</div>
 
-                {% if this.newAuthor %}
-                    {{ form_row(form.newAuthorName) }}
-                    <div style="display: none;">{{ form_row(form.author) }}</div>
-                {% else %}
-                    {{ form_row(form.author) }}
-					<div style="display: none;">{{ form_row(form.newAuthorName) }}</div>
-                {% endif %}
+				{{ form_row(form.genres, {
+					label: "vinyleForm.genres"|trans
+				}) }}
+				{{ form_row(form.image, {
+					label: "vinyleForm.image"|trans
+				}) }}
 
-                {{ form_rest(form) }}
-				
-				<button type="submit" class="bouton-vert">{{ "enregistrer"|trans }}</button>
+				<button type="submit" class="bouton-vert" data-action="live#action" data-live-action-param="saveVinyle">{{ "enregistrer"|trans }}</button>
 			</form>
 		{% endif %}
 	{% endif %}

@@ -10,6 +10,9 @@ vinyleForm:
     prix: Price
     stock: Stock
     precommande: Pre-order
+    auteur: Author
+    nouvel_auteur: New author
+    genres: Genres
     image: Image
-    chargerImage: Load image
     ajouter: Add
+    enregistrer: Save

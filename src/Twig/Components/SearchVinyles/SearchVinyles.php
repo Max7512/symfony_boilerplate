@@ -13,6 +13,7 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -46,7 +47,7 @@ class SearchVinyles extends AbstractController
     public ?Vinyle $vinyle = null;
 
     #[LiveProp(writable: true)]
-    public bool $newAuthor = false;
+    public ?string $newAuthor = null;
 
     public function __construct(
         private VinyleRepository $vinyleRepository
@@ -107,28 +108,22 @@ class SearchVinyles extends AbstractController
     }
 
     #[LiveAction]
-    public function saveVinyle(EntityManagerInterface $entityManager): void
+    public function addNewAuthor(EntityManagerInterface $entityManager): void
+    {
+        $author = new Author();
+        $author->setName($this->newAuthor);
+
+        $entityManager->persist($author);
+        $entityManager->flush();
+    }
+
+    #[LiveAction]
+    public function saveVinyle(Request $request, EntityManagerInterface $entityManager): void
     {
         $form = $this->getForm();
+        $form->handleRequest($request);
 
-        $vinyle = new Vinyle();
-
-        $vinyle->setName($form->get('name')->getData());
-        $vinyle->setDescription($form->get('description')->getData());
-        $vinyle->setPrice($form->get('price')->getData());
-        $vinyle->setStock($form->get('stock')->getData());
-
-        foreach ($form->get('genres')->getData() as $genre) {
-            $vinyle->addGenre($genre);
-        }
-
-        if ($this->newAuthor) {
-            $author = new Author();
-            $author->setName($form->get('newAuthorName')->getData());
-            $vinyle->setAuthor($author);
-        } else {
-            $vinyle->setAuthor($form->get('author')->getData());
-        }
+        $vinyle = $form->getData();
 
         $precommande = $form->get('precommande')->getData();
 
